@@ -6,6 +6,19 @@
     <title>投稿一覧</title>
 </head>
 <body>
-    <h2>投稿ページです。</h2>
+    <h1>Welcome to withdom!</h1>
+
+    <h2>最近の投稿</h2>
+
+    {% for post in posts.all%}
+
+        {{ post.title }}
+        <br /><br />
+        {{ post.published }}
+        <br /><br />
+        {{ post.summary }}
+        <br /><br />
+
+    {% endfor %}
 </body>
 </html>
