@@ -12,9 +12,11 @@
 
     {% for post in posts.all%}
 
+        #{{ post.id }} :
         {{ post.title }}
         <br /><br />
         {{ post.published }}
+        <img src="{{ post.image.url }}" />
         <br /><br />
         {{ post.summary }}
         <br /><br />
