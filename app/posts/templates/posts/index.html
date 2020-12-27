@@ -12,8 +12,7 @@
 
     {% for post in posts.all%}
 
-        #{{ post.id }} :
-        {{ post.title }}
+        <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
         <br /><br />
         {{ post.published }}
         <img src="{{ post.image.url }}" />
