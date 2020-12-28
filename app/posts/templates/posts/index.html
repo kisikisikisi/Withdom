@@ -65,7 +65,7 @@
         <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
         <br /><br />
         {{ post.published }}
-        <img src="{{ post.image.url }}" />
+        <img src="{{ post.image.url }}" class="img-fluid rounded" />
         <br /><br />
         {{ post.summary }}
         <br /><br />
