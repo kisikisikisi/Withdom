@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <title>登録確認をしてください</title>
+    <title>投稿一覧</title>
 </head>
 
 <body>
@@ -45,7 +45,7 @@
                         More
                     </a>
 
-                    <div class="navbar-dropdown">
+                    <div class="navbar-dropdown is-right">
                         <a class="navbar-item">
                             About
                         </a>
@@ -63,7 +63,32 @@
                 </div>
             </div>
 
+
+
             <div class="navbar-end">
+                {% if user.id %}
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{ user.username }}
+                    </a>
+
+                    <div class="navbar-dropdown is-right">
+                        <a class="navbar-item">
+                            About
+                        </a>
+                        <a class="navbar-item">
+                            Jobs
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            Report an issue
+                        </a>
+                    </div>
+                </div>
+                {% else %}
                 <div class="navbar-item">
                     <div class="buttons">
                         <a class="button is-primary">
@@ -75,6 +100,8 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
+
         </div>
     </nav>
 
@@ -83,7 +110,7 @@
             メールからリンクをクリックして認証を完了してください
         </h2>
     </div>
-    
+
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
