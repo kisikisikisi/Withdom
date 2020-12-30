@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 from posts import views
@@ -27,5 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/<int:post_id>/', views.post_detail, name="post_detail"),
     path('accounts/', include('accounts.urls')),
-    path('accounts/profile/', base.RedirectView.as_view(pattern_name="accounts:index")),
+    path('accounts/profile/', base.RedirectView.as_view(url="/")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

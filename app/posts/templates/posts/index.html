@@ -57,24 +57,48 @@
                         </a>
                         <hr class="navbar-divider">
                         <a class="navbar-item">
-                            Report an issue
+                            アウト
                         </a>
                     </div>
                 </div>
             </div>
 
             <div class="navbar-end">
+                {% if user.id %}
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{ user.username }}
+                    </a>
+
+                    <div class="navbar-dropdown is-right">
+                        <a class="navbar-item">
+                            About
+                        </a>
+                        <a class="navbar-item">
+                            Jobs
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href= "{% url 'accounts:logout' %}">
+                            ログアウト
+                        </a>
+                    </div>
+                </div>
+                {% else %}
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary">
+                        <a class="button is-primary" href= "{% url 'accounts:signup' %}">
                             <strong>ユーザー登録</strong>
                         </a>
-                        <a class="button is-light ">
+                        <a class="button is-light" href= "{% url 'accounts:login' %}">
                             ログイン
                         </a>
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </nav>
 
@@ -106,5 +130,4 @@
         </div>
     </footer>
 </body>
-
 </html>
