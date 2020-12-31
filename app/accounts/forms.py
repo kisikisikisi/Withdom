@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
+from django.core.mail import send_mail
 
 class SignUpForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput)
@@ -39,3 +40,9 @@ class SignUpForm(forms.Form):
         new_user = User.objects.create_user(username = username, email = email)
         new_user.set_password(password)
         new_user.save()
+        subject = "[Withdom]登録確認のお知らせ"
+        message = "Withdomへのご登録ありがとうございます。\n以下のリンクをクリックしてメールアドレスを確認してください\n身に覚えのない場合はリンクをクリックしないでください。"
+        from_email = 'withdom.manager@gmail.com'  # 送信者
+        recipient_list = [email]  # 宛先リスト
+        send_mail(subject, message, from_email, recipient_list)
+
