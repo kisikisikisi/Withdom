@@ -64,7 +64,7 @@
             </div>
 
             <div class="navbar-end">
-                {% if user.id %}
+                {% if user.is_authenticated %}
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         {{ user.username }}
@@ -72,16 +72,16 @@
 
                     <div class="navbar-dropdown is-right">
                         <a class="navbar-item">
-                            About
+                            マイページ
                         </a>
                         <a class="navbar-item">
-                            Jobs
+                            記事を書く
                         </a>
                         <a class="navbar-item">
-                            Contact
+                            アクセス解析
                         </a>
                         <hr class="navbar-divider">
-                        <a class="navbar-item" href= "{% url 'accounts:logout' %}">
+                        <a class="navbar-item" href="{% url 'accounts:logout' %}">
                             ログアウト
                         </a>
                     </div>
@@ -89,10 +89,10 @@
                 {% else %}
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary" href= "{% url 'accounts:signup' %}">
+                        <a class="button is-primary" href="{% url 'accounts:signup' %}">
                             <strong>ユーザー登録</strong>
                         </a>
-                        <a class="button is-light" href= "{% url 'accounts:login' %}">
+                        <a class="button is-light" href="{% url 'accounts:login' %}">
                             ログイン
                         </a>
                     </div>
@@ -103,19 +103,55 @@
     </nav>
 
     <div class="container">
-        <h1>Welcome to withdom!</h1>
-
+        <style>
+            .container {
+                text-align: center;
+            }
+        </style>
+        <br /><br />
         <h2>最近の投稿</h2>
         <hr>
         {% for post in posts.all%}
-
-        <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
-        <br /><br />
-        {{ post.published }}
-        <br /><br />
-        <img src="{{ post.image.url }}" class="img-fluid rounded" style="max-height: 200px" />
-        <br /><br />
-        {{ post.summary }}
+        <div class="box">
+            <article class="media">
+                <a href="{% url 'post_detail' post.id %}">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img src="{{ post.image.url }}" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>{{ post.title }}</strong> <small>{{ post.published }}</small>
+                                <small>@userid</small>
+                                <br>
+                                {{ post.summary }}
+                            </p>
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-left">
+                                <a class="level-item" aria-label="reply">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-reply" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                                <a class="level-item" aria-label="retweet">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-retweet" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                                <a class="level-item" aria-label="like">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-heart" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+            </article>
+            </a>
+        </div>
         <br /><br />
 
         {% endfor %}
@@ -130,4 +166,5 @@
         </div>
     </footer>
 </body>
+
 </html>
