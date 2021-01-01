@@ -1,0 +1,17 @@
+.footer {
+    background-color: #999999;
+}
+
+.container {
+    width: 50%;
+}
+
+.media a {
+    color: rgb(9, 54, 39);
+}
+
+.card {
+    width: 20%;
+    float: right;
+    margin-right: 2.5%;
+}

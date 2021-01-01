@@ -11,4 +11,4 @@ class Post(models.Model):
         return self.title
 
     def summary(self):
-        return self.body[:20]
+        return self.body[:120]

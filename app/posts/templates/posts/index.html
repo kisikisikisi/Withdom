@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
     <title>投稿一覧</title>
 </head>
 
@@ -64,7 +66,7 @@
             </div>
 
             <div class="navbar-end">
-                {% if user.is_authenticated %}
+                {% if user.id %}
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         {{ user.username }}
@@ -101,15 +103,43 @@
             {% endif %}
         </div>
     </nav>
+    <br /><br />
+
+    <div class="user-card">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-48x48">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img src="{% static 'posts/logo3.png' %}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">{{ user.username }}</p>
+                        <p class="subtitle is-6">@userid</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p>投稿数:0</p>
+                    <p>いいね数:0</p>
+                    <p>ブックマーク数:0</p>
+                    <p>総アクセス数:0</p>
+                    <hr>
+                    <p>ブログ開設日</p>
+                    <time datetime="2020-1-1">11:09 PM - 1 Jan 2016</time>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
-        <style>
-            .container {
-                text-align: center;
-            }
-        </style>
-        <br /><br />
-        <h2>最近の投稿</h2>
+        <h1>最近の投稿</h1>
         <hr>
         {% for post in posts.all%}
         <div class="box">
@@ -123,7 +153,8 @@
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                <strong>{{ post.title }}</strong> <small>{{ post.published }}</small>
+                                <strong>{{ post.title }}</strong><br>
+                                <small>{{ post.published }}</small>
                                 <small>@userid</small>
                                 <br>
                                 {{ post.summary }}
