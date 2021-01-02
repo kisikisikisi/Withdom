@@ -15,3 +15,9 @@
     float: right;
     margin-right: 2.5%;
 }
+
+.categolize-menu {
+    float: left;
+    width: 20%;
+    margin-left: 2.5%;
+}

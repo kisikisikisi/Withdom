@@ -7,7 +7,8 @@
     {% load static %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
-    <title>投稿一覧</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'posts/favicon.ico' %}">
+    <title>Withdom</title>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 {% load static %}
-                <img src="{% static 'posts/logo3.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+                <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                 data-target="navbarBasicExample">
@@ -105,6 +106,45 @@
     </nav>
     <br /><br />
 
+    <div class="categolize-menu">
+        <aside class="menu">
+            <p class="menu-label">
+                カテゴリ一覧
+            </p>
+            <ul class="menu-list">
+                <li><a>作ってみた</a></li>
+                <li><a>質問コーナー</a></li>
+                <li><a>マメ知識</a></li>
+                <li><a>アルゴリズム</a></li>
+                <li><a>その他</a></li>
+            </ul>
+            <p class="menu-label">
+                質問箱
+            </p>
+            <ul class="menu-list">
+                <li><a>Team Settings</a></li>
+                <li>
+                    <a class="is-active">Manage Your Team</a>
+                    <ul>
+                        <li><a>Members</a></li>
+                        <li><a>Plugins</a></li>
+                        <li><a>Add a member</a></li>
+                    </ul>
+                </li>
+                <li><a>Invitations</a></li>
+                <li><a>Cloud Storage Environment Settings</a></li>
+                <li><a>Authentication</a></li>
+            </ul>
+            <p class="menu-label">
+                アルゴリズム
+            </p>
+            <ul class="menu-list">
+                <li><a>Payments</a></li>
+                <li><a>Transfers</a></li>
+                <li><a>Balance</a></li>
+            </ul>
+        </aside>
+    </div>
     <div class="user-card">
         <div class="card">
             <div class="card-image">
@@ -126,10 +166,10 @@
                 </div>
 
                 <div class="content">
-                    <p>投稿数:0</p>
-                    <p>いいね数:0</p>
-                    <p>ブックマーク数:0</p>
-                    <p>総アクセス数:0</p>
+                    <p>投稿数 : 0</p>
+                    <p>いいね数 : 0</p>
+                    <p>ブックマーク数 : 0</p>
+                    <p>総アクセス数 : 0</p>
                     <hr>
                     <p>ブログ開設日</p>
                     <time datetime="2020-1-1">11:09 PM - 1 Jan 2016</time>
@@ -138,8 +178,34 @@
         </div>
     </div>
 
+    <div class="main-tab">
+        <div class="tabs is-boxed">
+            <ul>
+                <li class="is-active">
+                    <a>
+                        <span>今日の人気記事</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span>週間人気記事</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span>月間人気記事</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span>ベスト記事</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>最近の投稿</h1>
         <hr>
         {% for post in posts.all%}
         <div class="box">
