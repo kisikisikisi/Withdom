@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
+    {% load markdown_extras %}
 
 <head>
     <meta charset="utf-8">
@@ -223,7 +224,7 @@
                                 <small>{{ post.published }}</small>
                                 <small>@userid</small>
                                 <br>
-                                {{ post.summary }}
+                                {{ post.summary|markdown|safe }}
                             </p>
                         </div>
                         <nav class="level is-mobile">
