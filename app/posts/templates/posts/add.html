@@ -1,6 +1,127 @@
-<h1>Add page</h1>
-<form action="{% url 'posts:add' %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">投稿する</button>
-</form>
+<!DOCTYPE html>
+<html lang="ja-jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'posts/favicon.ico' %}">
+    <title>Withdom</title>
+</head>
+
+<body>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                {% load static %}
+                <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input class="input" type="text" name="search" placeholder="キーワード検索">
+                        </div>
+                        <div class="control">
+                            <a class="button is-primary"><i class="fa fa-search"></i>検索</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="navbar-item">
+                    Documentation
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            About
+                        </a>
+                        <a class="navbar-item">
+                            Jobs
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            アウト
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                {% if user.id %}
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{ user.username }}
+                    </a>
+
+                    <div class="navbar-dropdown is-right">
+                        <a class="navbar-item">
+                            マイページ
+                        </a>
+                        <a class="navbar-item" href="{% url 'posts:add' %}">
+                            記事を書く
+                        </a>
+                        <a class="navbar-item">
+                            アクセス解析
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{% url 'accounts:logout' %}">
+                            ログアウト
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{% url 'accounts:signup' %}">
+                            <strong>ユーザー登録</strong>
+                        </a>
+                        <a class="button is-light" href="{% url 'accounts:login' %}">
+                            ログイン
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    <br /><br />
+    <h1>Add page</h1>
+    <form action="{% url 'posts:add' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">投稿する</button>
+    </form>
+    <br /><br />
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Bulma</strong> by <a href="/">Jeremy Thomas</a>. The source code is licensed
+                <a href="/">MIT</a>. The website content
+                is licensed <a href="/">CC BY NC SA 4.0</a>
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
