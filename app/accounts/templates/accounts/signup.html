@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
+{% load static %}
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
     <title>ユーザー登録画面</title>
 </head>
 
@@ -13,7 +15,7 @@
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 {% load static %}
-                <img src="{% static 'posts/logo3.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+                <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                 data-target="navbarBasicExample">
@@ -35,32 +37,6 @@
                         </div>
                     </div>
                 </div>
-
-                <a class="navbar-item">
-                    Documentation
-                </a>
-
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        More
-                    </a>
-
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
-                            About
-                        </a>
-                        <a class="navbar-item">
-                            Jobs
-                        </a>
-                        <a class="navbar-item">
-                            Contact
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                            Report an issue
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <div class="navbar-end">
@@ -80,21 +56,30 @@
 
     <div class='container'>
         <br /><br />
-        <h1>ユーザー登録画面</h1>
+        <h2 class="signup-title">Withdomへようこそ！</h2>
         <form action="{% url 'accounts:signup' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Sign Up">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+            <div class="signup">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                <span class="helptext">{{ field.help_text }}</span>
+                {% endif %}
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+            <br />
+            <input type="submit" value="登録" style="width:100%;" class="button is-primary" href="{% url 'accounts:signup' %}">
         </form>
-        <p>or <a href="{% url 'accounts:login' %}">Login</a></p>
-    </div>
+        <p>登録済みの場合は→<a href="{% url 'accounts:login' %}">ログイン</a></p>
+        <br /><br />
 
+    </div>
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Bulma</strong> by <a href="/">Jeremy Thomas</a>. The source code is licensed
-                <a href="/">MIT</a>. The website content
-                is licensed <a href="/">CC BY NC SA 4.0</a>
+                <strong>Withdom</strong>
             </p>
         </div>
     </footer>
