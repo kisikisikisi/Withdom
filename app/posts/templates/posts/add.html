@@ -38,32 +38,6 @@
                         </div>
                     </div>
                 </div>
-
-                <a class="navbar-item">
-                    Documentation
-                </a>
-
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        More
-                    </a>
-
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
-                            About
-                        </a>
-                        <a class="navbar-item">
-                            Jobs
-                        </a>
-                        <a class="navbar-item">
-                            Contact
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                            アウト
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <div class="navbar-end">
@@ -105,7 +79,6 @@
         </div>
     </nav>
     <br /><br />
-    <h1>記事を投稿する</h1>
     <form action="{% url 'posts:add' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
@@ -117,9 +90,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Bulma</strong> by <a href="/">Jeremy Thomas</a>. The source code is licensed
-                <a href="/">MIT</a>. The website content
-                is licensed <a href="/">CC BY NC SA 4.0</a>
+                <strong>Withdom</strong>
             </p>
         </div>
     </footer>

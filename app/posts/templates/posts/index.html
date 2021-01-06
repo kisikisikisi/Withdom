@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
-    {% load markdown_extras %}
+{% load markdown_extras %}
 
 <head>
     <meta charset="utf-8">
@@ -14,228 +14,247 @@
 
 <body>
     <div class="header">
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                {% load static %}
-                <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    {% load static %}
+                    <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item">
-                    <div class="field has-addons">
-                        <div class="control">
-                            <input class="input" type="text" name="search" placeholder="キーワード検索">
-                        </div>
-                        <div class="control">
-                            <a class="button is-primary"><i class="fa fa-search"></i>検索</a>
-                        </div>
-                    </div>
-                </div>
-
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
 
-            <div class="navbar-end">
-                {% if user.id %}
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        {{ user.username }}
-                    </a>
-
-                    <div class="navbar-dropdown is-right">
-                        <a class="navbar-item">
-                            マイページ
-                        </a>
-                        <a class="navbar-item" href="{% url 'posts:add' %}">
-                            記事を書く
-                        </a>
-                        <a class="navbar-item">
-                            アクセス解析
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="{% url 'accounts:logout' %}">
-                            ログアウト
-                        </a>
-                    </div>
-                </div>
-                {% else %}
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-primary" href="{% url 'accounts:signup' %}">
-                            <strong>ユーザー登録</strong>
-                        </a>
-                        <a class="button is-light" href="{% url 'accounts:login' %}">
-                            ログイン
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </nav>
-
-    <div class="main">
-        <br />
-
-    <div class="categolize-menu">
-        <aside class="menu">
-            <p class="menu-label">
-                カテゴリ一覧
-            </p>
-            <ul class="menu-list">
-                <li><a>作ってみた</a></li>
-                <li><a>質問コーナー</a></li>
-                <li><a>マメ知識</a></li>
-                <li><a>アルゴリズム</a></li>
-                <li><a>その他</a></li>
-            </ul>
-            <p class="menu-label">
-                質問箱
-            </p>
-            <ul class="menu-list">
-                <li><a>Team Settings</a></li>
-                <li>
-                    <a class="is-active">Manage Your Team</a>
-                    <ul>
-                        <li><a>Members</a></li>
-                        <li><a>Plugins</a></li>
-                        <li><a>Add a member</a></li>
-                    </ul>
-                </li>
-                <li><a>Invitations</a></li>
-                <li><a>Cloud Storage Environment Settings</a></li>
-                <li><a>Authentication</a></li>
-            </ul>
-            <p class="menu-label">
-                アルゴリズム
-            </p>
-            <ul class="menu-list">
-                <li><a>Payments</a></li>
-                <li><a>Transfers</a></li>
-                <li><a>Balance</a></li>
-            </ul>
-        </aside>
-    </div>
-    <div class="user-card">
-        <div class="card">
-            <div class="card-image">
-                <figure class="image is-48x48">
-                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                </figure>
-            </div>
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img src="{% static 'posts/logo3.png' %}" alt="Placeholder image">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4">{{ user.username }}</p>
-                        <p class="subtitle is-6">@userid</p>
-                    </div>
-                </div>
-
-                <div class="content">
-                    <p>投稿数 : 0</p>
-                    <p>いいね数 : 0</p>
-                    <p>ブックマーク数 : 0</p>
-                    <p>総アクセス数 : 0</p>
-                    <hr>
-                    <p>ブログ開設日</p>
-                    <time datetime="2020-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="main-tab">
-        <div class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a>
-                        <span>今日の人気記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span>週間人気記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span>月間人気記事</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span>ベスト記事</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="container">
-        <hr>
-        {% for post in posts.all%}
-        <div class="box">
-            <article class="media">
-                <a href="{% url 'post_detail' post.id %}">
-                    <div class="media-left">
-                        <figure class="image is-64x64">
-                            <img src="{{ post.image.url }}" alt="Image">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <div class="content">
-                            <p>
-                                <strong>{{ post.title }}</strong><br>
-                                <small>{{ post.published }}</small>
-                                <small>@userid</small>
-                                <br>
-                                {{ post.summary|markdown|safe }}
-                            </p>
-                        </div>
-                        <nav class="level is-mobile">
-                            <div class="level-left">
-                                <a class="level-item" aria-label="reply">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-reply" aria-hidden="true"></i>
-                                    </span>
-                                </a>
-                                <a class="level-item" aria-label="retweet">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-retweet" aria-hidden="true"></i>
-                                    </span>
-                                </a>
-                                <a class="level-item" aria-label="like">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-heart" aria-hidden="true"></i>
-                                    </span>
-                                </a>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input class="input" type="text" name="search" placeholder="キーワード検索">
                             </div>
-                        </nav>
+                            <div class="control">
+                                <a class="button is-primary"><i class="fa fa-search"></i>検索</a>
+                            </div>
+                        </div>
                     </div>
-            </article>
-            </a>
-        </div>
-        <br /><br />
 
-        {% endfor %}
-    </div>
-</div>
-    <footer class="footer">
-        <strong>Withdom</strong>
-    </footer>
+                </div>
+
+                <div class="navbar-end">
+                    {% if user.id %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            {{ user.username }}
+                        </a>
+
+                        <div class="navbar-dropdown is-right">
+                            <a class="navbar-item">
+                                マイページ
+                            </a>
+                            <a class="navbar-item" href="{% url 'posts:add' %}">
+                                記事を書く
+                            </a>
+                            <a class="navbar-item">
+                                アクセス解析
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="{% url 'accounts:logout' %}">
+                                ログアウト
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary" href="{% url 'accounts:signup' %}">
+                                <strong>ユーザー登録</strong>
+                            </a>
+                            <a class="button is-light" href="{% url 'accounts:login' %}">
+                                ログイン
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+
+        <div class="main">
+            <br />
+
+            <div class="categolize-menu">
+                <aside class="menu">
+                    <p class="menu-label">
+                        カテゴリ一覧
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>作ってみた</a></li>
+                        <li><a>質問コーナー</a></li>
+                        <li><a>マメ知識</a></li>
+                        <li><a>アルゴリズム</a></li>
+                        <li><a>その他</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        質問箱
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>Team Settings</a></li>
+                        <li>
+                            <a class="is-active">Manage Your Team</a>
+                            <ul>
+                                <li><a>Members</a></li>
+                                <li><a>Plugins</a></li>
+                                <li><a>Add a member</a></li>
+                            </ul>
+                        </li>
+                        <li><a>Invitations</a></li>
+                        <li><a>Cloud Storage Environment Settings</a></li>
+                        <li><a>Authentication</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        アルゴリズム
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>Payments</a></li>
+                        <li><a>Transfers</a></li>
+                        <li><a>Balance</a></li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="user-card">
+                <div class="card">
+                    <div class="card-image">
+                    </div>
+                    {% if user.id %}
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img class="is-rounded" src="{% static 'posts/logo3.png' %}">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-4">{{ user.username }}</p>
+                                <p class="subtitle is-6">@userid</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>投稿数 : 0</p>
+                            <p>いいね数 : 0</p>
+                            <p>ブックマーク数 : 0</p>
+                            <p>総アクセス数 : 0</p>
+                            <hr>
+                            <p>記事を書く</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img class="is-rounded" src="{% static 'posts/logo3.png' %}">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-4">ゲスト</p>
+                                <p class="subtitle is-6">@userid</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>投稿数 : 0</p>
+                            <p>いいね数 : 0</p>
+                            <p>ブックマーク数 : 0</p>
+                            <p>総アクセス数 : 0</p>
+                            <hr>
+                            <a href="{% url 'accounts:signup' %}">
+                                <strong>記事を書く</strong>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="main-tab">
+                    <div class="tabs is-boxed">
+                        <ul>
+                            <li class="is-active">
+                                <a>
+                                    <span>今日の人気記事</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span>週間人気記事</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span>月間人気記事</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span>ベスト記事</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                {% for post in posts.all%}
+                <div class="box">
+                    <article class="media">
+                        <a href="{% url 'post_detail' post.id %}">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img src="{{ post.image.url }}" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <strong>{{ post.title }}</strong><br>
+                                    <small>{{ post.published }}</small>
+                                    <small>@userid</small>
+                                    <br>
+                                    {{ post.summary|markdown|safe }}
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <a class="level-item" aria-label="reply">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-reply" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+                                        <a class="level-item" aria-label="retweet">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-retweet" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+                                        <a class="level-item" aria-label="like">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-heart" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                    </article>
+                    </a>
+                </div>
+
+                {% endfor %}
+                <br />
+            </div>
+        </div>
+        <footer class="footer">
+            <strong>Withdom</strong>
+        </footer>
 </body>
 
 </html>

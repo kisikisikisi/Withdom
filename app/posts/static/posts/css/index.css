@@ -24,8 +24,16 @@ body {
 .card {
     width: 20%;
     float: right;
-    margin-right: 2.5%;
+    margin-right: 2%;
 }
+
+.card-image {
+    margin-right: 2%;
+}
+
+.media > .media-left {
+    border-radius: 10px;
+    border: 2px solid#999999;}
 
 .categolize-menu {
     float: left;
