@@ -80,12 +80,29 @@
     </nav>
     <br /><br />
     <form action="{% url 'posts:add' %}" method="POST" enctype="multipart/form-data">
+        {{ form.non_field_errors }}
         {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <button type="submit">投稿する</button>
+        {% for field in form %}
+        <div class="signup">
+            {{ form.media }}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+            <span class="helptext">{{ field.help_text }}</span>
+            {% endif %}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+
+        <br /><br />
+
+
+        <div class="post-article">
+            <button class="button is-info" type="submit">投稿する</button>
+        </div>
+        <br /><br />
     </form>
-    <br /><br />
+
 
     <footer class="footer">
         <div class="content has-text-centered">
