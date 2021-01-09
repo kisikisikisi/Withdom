@@ -7,5 +7,7 @@ app_name = 'posts'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('add/', views.add, name='add')
+    path('add/', views.add, name='add'),
+    path('edit/<int:post_id>/', views.edit, name='edit'),
+    path('delete/<int:post_id>/', views.delete, name='delete')
     ]
