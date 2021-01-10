@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+{% load markdown_extras %}
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer ></script>
+    <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'posts/favicon.ico' %}">
+    <link href="{% static 'mdeditor/css/editormd.min.css' %}" rel="stylesheet">
+    <link href="{% static 'mdeditor/css/editormd.preview.css' %}" rel="stylesheet">
+    <title>Withdom</title>
+</head>
+
+<body>
+    <div class="header">
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    {% load static %}
+                    <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input class="input" type="text" name="search" placeholder="キーワード検索">
+                            </div>
+                            <div class="control">
+                                <a class="button is-primary"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="navbar-end">
+                    {% if user.id %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            {{ user.username }}
+                        </a>
+
+                        <div class="navbar-dropdown is-right">
+                            <a class="navbar-item">
+                                マイページ
+                            </a>
+                            <a class="navbar-item" href="{% url 'posts:add' %}">
+                                記事を書く
+                            </a>
+                            <a class="navbar-item">
+                                アクセス解析
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="{% url 'accounts:logout' %}">
+                                ログアウト
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary" href="{% url 'accounts:signup' %}">
+                                <strong>ユーザー登録</strong>
+                            </a>
+                            <a class="button is-light" href="{% url 'accounts:login' %}">
+                                ログイン
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+        <footer class="footer">
+            <strong>Withdom</strong>
+        </footer>
+</body>
+
+</html>
