@@ -83,6 +83,7 @@
         {{ form.non_field_errors }}
         {% csrf_token %}
         {% for field in form %}
+        {% if field.name != 'author' %}
         <div class="signup">
             {{ form.media }}
             {{ field.label_tag }}
@@ -92,10 +93,10 @@
             {% endif %}
             {{ field.errors }}
         </div>
+        {% endif %}
         {% endfor %}
 
         <br /><br />
-
 
         <div class="post-article">
             <button class="button is-info" type="submit">投稿する</button>
