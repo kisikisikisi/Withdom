@@ -128,15 +128,17 @@
             <article class="media">
                 <a href="{% url 'post_detail' post.id %}">
                     <div class="media-left">
+                        {% if post.image %}
                         <figure class="image is-64x64">
                             <img src="{{ post.image.url }}" alt="Image">
                         </figure>
+                        {% endif %}
                     </div>
                     <div class="media-content">
                         <div class="content">
                             <strong>{{ post.title }}</strong><br>
                             <small>{{ post.published }}</small>
-                            <small>@userid</small>
+                            <small>{{ post.author }}</small>
                             <br>
                             {{ post.summary|markdown|safe }}
                         </div>

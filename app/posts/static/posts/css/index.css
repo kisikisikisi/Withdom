@@ -9,7 +9,6 @@ body {
 }
 
 .footer {
-    flex: 2;
     background-color: #999999;
     text-align: center;
     font-size: x-large;

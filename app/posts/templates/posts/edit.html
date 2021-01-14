@@ -1,7 +1,12 @@
 
+{% extends './base.html' %}
+{% block content %}
+{% load static %}
+{% load markdown_extras %}
 <h1>edit page</h1>
 <form method="POST" enctype="multipart/form-data">
  {% csrf_token %}
  {{ form.as_p }}
  <button type="submit">編集する</button>
 </form>
+{% endblock %}
