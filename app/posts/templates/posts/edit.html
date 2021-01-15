@@ -3,10 +3,12 @@
 {% block content %}
 {% load static %}
 {% load markdown_extras %}
+{% if user.username == post.author|stringformat:"s" %}
 <h1>edit page</h1>
 <form method="POST" enctype="multipart/form-data">
  {% csrf_token %}
  {{ form.as_p }}
  <button type="submit">編集する</button>
 </form>
+{% endif %}
 {% endblock %}
