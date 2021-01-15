@@ -80,8 +80,11 @@
         <br /><br />
         {{ post.body|markdown|safe }}
         <br /><br />
+
+        {% if user.username == post.author|stringformat:"s" %}
         <button><a href="{% url 'posts:delete' post_id=post.id %}">削除</a></button>
         <button><a href="{% url 'posts:edit' post_id=post.id %}">編集</a></button>
+        {% endif %}
         <br /><br />
 
 
