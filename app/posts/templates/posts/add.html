@@ -34,7 +34,7 @@
                             <input class="input" type="text" name="search" placeholder="キーワード検索">
                         </div>
                         <div class="control">
-                            <a class="button is-primary"><i class="fa fa-search"></i>検索</a>
+                            <a class="button is-primary"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
         {{ form.non_field_errors }}
         {% csrf_token %}
         {% for field in form %}
-        {% if field.name != 'author' %}
+        {% if field.name != 'author' and field.name != 'published' %}
         <div class="signup">
             {{ form.media }}
             {{ field.label_tag }}
