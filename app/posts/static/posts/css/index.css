@@ -6,10 +6,12 @@ body {
 
 .main-contents {
     flex: 1;
+    background-color: #f3f3f3;
 }
 
 .footer {
-    background-color: #999999;
+    background-color: #4b7c63;
+    color: white;
     text-align: center;
     font-size: x-large;
     width: 100%;
@@ -80,4 +82,12 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 .post-article button {
     float: right;
     margin-right: 10%;
+}
+
+.icon-color a:hover {
+    color: yellow;
+}
+
+.icon-color a {
+    color: rgb(50, 231, 177);
 }
