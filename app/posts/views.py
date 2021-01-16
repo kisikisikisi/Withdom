@@ -34,6 +34,7 @@ def edit(request, post_id):
     if request.method == "POST":
         form = PostAddForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
+            post.author = request.user
             form.save()
             return redirect('posts:post_detail', post_id=post.id)
     else:
