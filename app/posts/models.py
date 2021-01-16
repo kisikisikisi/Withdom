@@ -10,6 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     image = models.ImageField(upload_to='media/', blank=True)
     body = MDTextField()
+    like = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

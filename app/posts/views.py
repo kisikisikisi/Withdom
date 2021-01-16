@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 from django.urls import reverse_lazy
-from .forms import PostAddForm  # 追加
+from .forms import PostAddForm
+from django.http.response import JsonResponse
 
 
 def index(request):
@@ -47,3 +48,16 @@ def delete(request, post_id):
     if request.user == post.author:
         post.delete()
     return redirect('posts:index')
+
+
+def like(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    post.like += 1
+    post.save()
+    return redirect('posts:post_detail', post_id)
+
+def api_like(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    post.like += 1
+    post.save() 
+    return JsonResponse({"like":post.like})

@@ -23,8 +23,10 @@ from django.views.generic import base
 urlpatterns = [
     path('posts/', include('posts.urls')),
     path('', views.index, name='index'),
+    path("api/like/<int:post_id>/", views.api_like, name="api_like"),
     path('admin/', admin.site.urls),
     path('posts/<int:post_id>/', views.post_detail, name="post_detail"),
+    path('posts/<int:post_id>/like/', views.like, name='like'),
     path('accounts/', include('accounts.urls')),
     path('accounts/profile/', base.RedirectView.as_view(url="/")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

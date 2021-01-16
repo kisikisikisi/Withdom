@@ -3,50 +3,34 @@
 {% load static %}
 {% load markdown_extras %}
 
-
+<script>
+    function api_like() {
+        var api_url = "{% url 'api_like' post.id %}";
+        var btn = document.getElementById("like");
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                var received_data = JSON.parse(request.responseText);
+                btn.innerText = received_data.like;
+            }
+        }
+        request.open("GET", api_url);
+        request.send();
+    }
+</script>
 <div class="main-contents">
     <br />
-    <div class="categolize-menu">
-        <aside class="menu">
-            <p class="menu-label">
-                カテゴリ一覧
-            </p>
-            <ul class="menu-list">
-                <li><a>作ってみた</a></li>
-                <li><a>質問コーナー</a></li>
-                <li><a>マメ知識</a></li>
-                <li><a>アルゴリズム</a></li>
-                <li><a>その他</a></li>
-            </ul>
-            <p class="menu-label">
-                質問箱
-            </p>
-            <ul class="menu-list">
-                <li><a>Team Settings</a></li>
-                <li>
-                    <a class="is-active">Manage Your Team</a>
-                    <ul>
-                        <li><a>Members</a></li>
-                        <li><a>Plugins</a></li>
-                        <li><a>Add a member</a></li>
-                    </ul>
-                </li>
-                <li><a>Invitations</a></li>
-                <li><a>Cloud Storage Environment Settings</a></li>
-                <li><a>Authentication</a></li>
-            </ul>
-            <p class="menu-label">
-                アルゴリズム
-            </p>
-        </aside>
-    </div>
+
     <div class="user-card">
         <div class="card">
+            <div class="card-image">
+            </div>
+            {% if user.id %}
             <div class="card-content">
                 <div class="media">
                     <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img src="{% static 'posts/logo3.png' %}" alt="Placeholder image">
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="{% static 'posts/logo3.png' %}">
                         </figure>
                     </div>
                     <div class="media-content">
@@ -54,17 +38,40 @@
                         <p class="subtitle is-6">@userid</p>
                     </div>
                 </div>
-
                 <div class="content">
                     <p>投稿数 : 0</p>
                     <p>いいね数 : 0</p>
                     <p>ブックマーク数 : 0</p>
                     <p>総アクセス数 : 0</p>
                     <hr>
-                    <p>ブログ開設日</p>
-                    <time datetime="2020-1-1">11:09 PM - 1 Jan 2016</time>
+                    <p>記事を書く</p>
                 </div>
             </div>
+            {% else %}
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="{% static 'posts/logo3.png' %}">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">ゲスト</p>
+                        <p class="subtitle is-6">@userid</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <p>投稿数 : 0</p>
+                    <p>いいね数 : 0</p>
+                    <p>ブックマーク数 : 0</p>
+                    <p>総アクセス数 : 0</p>
+                    <hr>
+                    <a href="{% url 'accounts:signup' %}">
+                        <strong>記事を書く</strong>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -80,10 +87,22 @@
         <br /><br />
         {{ post.body|markdown|safe }}
         <br /><br />
+        <div class="level-left">
+            <p><span id="like">{{ post.like }}</span>いいね！</p>
+            <a class="level-item" aria-label="like" onclick="api_like()">
+                <span class="icon is-small has-text-success">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                </span>
+            </a>
+        </div>
+
+        <br /><br />
 
         {% if user.username == post.author|stringformat:"s" %}
-        <button><a href="{% url 'posts:delete' post_id=post.id %}">削除</a></button>
-        <button><a href="{% url 'posts:edit' post_id=post.id %}">編集</a></button>
+        <button class="button is-danger is-outlined"
+            onclick="location.href='{% url 'posts:delete' post_id=post.id %}'">削除</button>
+        <button class="button is-link is-outlined" onclick="location.href='{% url 'posts:edit' post_id=post.id %}'"
+            style="float: right;">編集</button>
         {% endif %}
         <br /><br />
 

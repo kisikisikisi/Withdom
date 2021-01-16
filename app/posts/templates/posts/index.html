@@ -2,45 +2,8 @@
 {% block content %}
 {% load static %}
 {% load markdown_extras %}
-
 <div class="main-contents">
     <br />
-
-    <div class="categolize-menu">
-        <aside class="menu">
-            <p class="menu-label">
-                カテゴリ一覧
-            </p>
-            <ul class="menu-list">
-                <li><a>作ってみた</a></li>
-                <li><a>質問コーナー</a></li>
-                <li><a>マメ知識</a></li>
-                <li><a>アルゴリズム</a></li>
-                <li><a>その他</a></li>
-            </ul>
-            <p class="menu-label">
-                質問箱
-            </p>
-            <ul class="menu-list">
-                <li><a>Team Settings</a></li>
-                <li>
-                    <a class="is-active">Manage Your Team</a>
-                    <ul>
-                        <li><a>Members</a></li>
-                        <li><a>Plugins</a></li>
-                        <li><a>Add a member</a></li>
-                    </ul>
-                </li>
-                <li><a>Invitations</a></li>
-                <li><a>Cloud Storage Environment Settings</a></li>
-                <li><a>Authentication</a></li>
-            </ul>
-            <p class="menu-label">
-                アルゴリズム
-            </p>
-        </aside>
-    </div>
-
     <div class="user-card">
         <div class="card">
             <div class="card-image">
@@ -59,12 +22,15 @@
                     </div>
                 </div>
                 <div class="content">
+
                     <p>投稿数 : 0</p>
                     <p>いいね数 : 0</p>
                     <p>ブックマーク数 : 0</p>
                     <p>総アクセス数 : 0</p>
                     <hr>
-                    <p>記事を書く</p>
+                    <a href="{% url 'posts:add' %}">
+                        <strong>記事を書く</strong>
+                    </a>
                 </div>
             </div>
             {% else %}
@@ -81,7 +47,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <p>投稿数 : 0</p>
+                    <p>投稿数 : {{ post.count }} </p>
                     <p>いいね数 : 0</p>
                     <p>ブックマーク数 : 0</p>
                     <p>総アクセス数 : 0</p>
@@ -144,19 +110,10 @@
                         </div>
                         <nav class="level is-mobile">
                             <div class="level-left">
-                                <a class="level-item" aria-label="reply">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-reply" aria-hidden="true"></i>
-                                    </span>
-                                </a>
-                                <a class="level-item" aria-label="retweet">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-retweet" aria-hidden="true"></i>
-                                    </span>
-                                </a>
+                                <p><span id="like">{{ post.like }}</span>いいね！</p>
                                 <a class="level-item" aria-label="like">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-heart" aria-hidden="true"></i>
+                                    <span class="icon is-small has-text-success">
+                                        <i class="fas fa-star" aria-hidden="true"></i>
                                     </span>
                                 </a>
                             </div>
