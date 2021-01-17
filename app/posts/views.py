@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
+from .models import Comment
 from django.urls import reverse_lazy
 from .forms import PostAddForm
 from django.http.response import JsonResponse
@@ -14,6 +15,8 @@ def index(request):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+    if request.method == "POST":
+        Comment.objects.create(text=request.POST["text"], article=post)
     return render(request, 'posts/post_detail.html', {'post': post})
 
 

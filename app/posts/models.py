@@ -17,3 +17,12 @@ class Post(models.Model):
 
     def summary(self):
         return self.body[:120]
+
+
+class Comment(models.Model):
+    text = models.TextField()
+    posted_at = models.DateTimeField(auto_now_add=True)
+    article = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.text

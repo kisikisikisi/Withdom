@@ -99,6 +99,18 @@
         </div>
 
         <br /><br />
+        <form action="" method="POST">
+            <p><label for="com">コメント</label></p>
+            {% csrf_token %}
+            <textarea name="text" id="com" cols="30" rows="10"></textarea>
+            <button type="submit">投稿</button>
+        </form>
+    
+        {% for comment in post.comments.all %}
+            <p>{{ comment.text }}</br><small>{{ comment.posted_at }}</small></p>
+        {% empty %}
+        <p>コメントはありません</p>
+        {% endfor %}
 
         {% if user.username == post.author|stringformat:"s" %}
         <button class="button is-danger is-outlined"
