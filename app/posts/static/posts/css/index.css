@@ -25,7 +25,6 @@ body {
 }
 
 .container {
-    background-color: white;
     margin-right: 25%;
     margin-left: 3.5%;
 }
@@ -103,18 +102,30 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 .top-intro {
     margin-top: 20px;
     margin-bottom: 5px;
-    height: 400px;
+    height: 450px;
     background-color: white;
     border-radius: 10px;
     margin-left: 4%;
     margin-right: 50px;
     box-shadow: 0 0 6px -2px rgb(180, 180, 180);
+    animation: fadeIn 2s ease 0.3s 1 normal;
 }
 
 .top-intro img{
     float: right;
     margin-right: 100px;
     margin-top: 50px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+     }
+     100% {
+        opacity: 1;
+        transform: translateY(0);
+     }
 }
 
 .top-message {
@@ -129,4 +140,8 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 .top-message p{
     font-size: 20px;
     
+}
+
+.tabs a{
+    background-color: white;
 }

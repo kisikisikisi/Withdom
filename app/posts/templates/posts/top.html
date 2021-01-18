@@ -12,6 +12,9 @@
                 <a class="button is-primary" href="{% url 'accounts:signup' %}">
                     <strong>ユーザー登録</strong>
                 </a>
+                <a class="button is-primary is-outlined" href="{% url 'accounts:signup' %}">
+                    <strong>CreHubって何？</strong>
+                </a>
             </div>
         </div>
     </div>
@@ -77,33 +80,30 @@
     </div>
 
     <div class="container">
-        <div class="main-tab">
-            <div class="tabs is-boxed">
-                <ul>
-                    <li class="is-active">
-                        <a>
-                            <span>今日の人気記事</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span>週間人気記事</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span>月間人気記事</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span>ベスト記事</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <hr>
+        <div class="tabs is-toggle">
+            <ul>
+              <li class="is-active">
+                <a>
+                  <span>今日の人気記事</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span>今週</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span>今月</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span>ベスト記事</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         {% for post in posts.all%}
         <div class="box">
             <article class="media">
