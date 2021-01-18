@@ -12,6 +12,9 @@ def index(request):
     posts = Post.objects.order_by('-published')
     return render(request, 'posts/index.html', {'posts': posts})
 
+def top(request):
+    posts = Post.objects.order_by('-published')
+    return render(request, 'posts/top.html', {'posts': posts})
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)

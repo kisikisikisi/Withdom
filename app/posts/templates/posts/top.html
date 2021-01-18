@@ -1,0 +1,145 @@
+{% extends './base.html' %}
+{% block content %}
+{% load static %}
+{% load markdown_extras %}
+<div class="top-intro">
+    <div class="top-message">
+        <h2>Welcome to CreHub!</h2>
+        <p>あなたの「創る」を共有しましょう</p>
+        <br />
+        <div class="navbar-item">
+            <div class="buttons">
+                <a class="button is-primary" href="{% url 'accounts:signup' %}">
+                    <strong>ユーザー登録</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+    <img src="{% static 'posts/te.png' %}">
+</div>
+<div class="main-contents">
+    <br />
+    <div class="user-card">
+        <div class="card">
+            <div class="card-image">
+            </div>
+            {% if user.id %}
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="{% static 'posts/top-image.png' %}">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">{{ user.username }}</p>
+                        <p class="subtitle is-6">@userid</p>
+                    </div>
+                </div>
+                <div class="content">
+
+                    <p>投稿数 : 0</p>
+                    <p>いいね数 : 0</p>
+                    <p>ブックマーク数 : 0</p>
+                    <p>総アクセス数 : 0</p>
+                    <hr>
+                    <a href="{% url 'posts:add' %}">
+                        <strong>記事を書く</strong>
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="{% static 'posts/logo3.png' %}">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">ゲスト</p>
+                        <p class="subtitle is-6">@userid</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <p>投稿数 : {{ post.count }} </p>
+                    <p>いいね数 : 0</p>
+                    <p>ブックマーク数 : 0</p>
+                    <p>総アクセス数 : 0</p>
+                    <hr>
+                    <a href="{% url 'accounts:signup' %}">
+                        <strong>記事を書く</strong>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-tab">
+            <div class="tabs is-boxed">
+                <ul>
+                    <li class="is-active">
+                        <a>
+                            <span>今日の人気記事</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span>週間人気記事</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span>月間人気記事</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span>ベスト記事</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        {% for post in posts.all%}
+        <div class="box">
+            <article class="media">
+                <a href="{% url 'post_detail' post.id %}">
+                    <div class="media-left">
+                        {% if post.image %}
+                        <figure class="image is-64x64">
+                            <img src="{{ post.image.url }}" alt="Image">
+                        </figure>
+                        {% endif %}
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <strong>{{ post.title }}</strong><br>
+                            <small>{{ post.published }}</small>
+                            <small>{{ post.author }}</small>
+                            <br>
+                            {{ post.summary|markdown|safe }}
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-left">
+                                <p><span id="like">{{ post.like }}</span>いいね！</p>
+                                <a class="level-item" aria-label="like">
+                                    <span class="icon is-small has-text-info">
+                                        <i class="fas fa-star" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+            </article>
+            </a>
+        </div>
+
+        {% endfor %}
+        <br />
+    </div>
+</div>
+{% endblock %}

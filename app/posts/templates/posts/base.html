@@ -17,11 +17,10 @@
 
 <body>
     <div class="header">
-        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                    {% load static %}
-                    <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+                    <img src="{% static 'posts/te-logo.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
@@ -88,7 +87,7 @@
         {% block content %}
         {% endblock %}
         <footer class="footer">
-            <strong>Withdom</strong>
+            <p>Withdom</p>
         </footer>
 </body>
 

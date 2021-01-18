@@ -1,16 +1,22 @@
+.header {
+    border-bottom: 0.5px solid #a6adac;
+    box-shadow:0px 0.5px 0.5px #a6adac;
+}
+
 body {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
+    background-color: #f5f5f5;
   }
 
 .main-contents {
     flex: 1;
-    background-color: #f3f3f3;
+    background-color: #f5f5f5;
 }
 
 .footer {
-    background-color: #4b7c63;
+    background-color: #8d9993;
     color: white;
     text-align: center;
     font-size: x-large;
@@ -19,7 +25,9 @@ body {
 }
 
 .container {
-    width: 50%;
+    background-color: white;
+    margin-right: 25%;
+    margin-left: 3.5%;
 }
 
 .media a {
@@ -90,4 +98,35 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 
 .icon-color a {
     color: rgb(50, 231, 177);
+}
+
+.top-intro {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 4%;
+    margin-right: 50px;
+    box-shadow: 0 0 6px -2px rgb(180, 180, 180);
+}
+
+.top-intro img{
+    float: right;
+    margin-right: 100px;
+    margin-top: 50px;
+}
+
+.top-message {
+    font-size: 40px;
+    font-weight: bold;
+    float: left;
+    margin-top: 100px;
+    margin-left: 50px;
+    font-family: BlinkMacSystemFont
+}
+
+.top-message p{
+    font-size: 20px;
+    
 }
