@@ -145,3 +145,11 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 .tabs a{
     background-color: white;
 }
+
+.navbar-start .control {
+    display:  inline-block;
+}
+
+.tabs a:active {
+    background-color: tomato;
+}

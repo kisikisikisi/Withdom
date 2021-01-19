@@ -6,15 +6,37 @@ from .models import Comment
 from django.urls import reverse_lazy
 from .forms import PostAddForm
 from django.http.response import JsonResponse
-
+from django.db.models import Q
+from django.contrib import messages
+from functools import reduce
+from operator import and_
 
 def index(request):
     posts = Post.objects.order_by('-published')
     return render(request, 'posts/index.html', {'posts': posts})
 
+
 def top(request):
     posts = Post.objects.order_by('-published')
-    return render(request, 'posts/top.html', {'posts': posts})
+    keyword = request.GET.get('keyword')
+    if keyword:
+        exclusion_list = set([' ', '　'])
+        q_list = ''
+        for word in keyword:
+            if word in exclusion_list:
+                pass
+            else:
+                q_list += word
+
+        query = reduce(
+                    and_, [Q(title__icontains=q) | Q(body__icontains=q) for q in q_list]
+                )
+        posts = posts.filter(query)
+        messages.success(request, '「{}」の検索結果'.format(keyword))
+        return render(request, 'posts/index.html', {'posts': posts})
+    else:
+        return render(request, 'posts/top.html', {'posts': posts})
+
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
@@ -62,8 +84,9 @@ def like(request, post_id):
     post.save()
     return redirect('posts:post_detail', post_id)
 
+
 def api_like(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.like += 1
-    post.save() 
-    return JsonResponse({"like":post.like})
+    post.save()
+    return JsonResponse({"like": post.like})

@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer ></script>
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer></script>
     <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'posts/favicon.ico' %}">
     <link href="{% static 'mdeditor/css/editormd.min.css' %}" rel="stylesheet">
@@ -20,7 +20,8 @@
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                    <img src="{% static 'posts/te-logo.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+                    <img src="{% static 'posts/te-logo.png' %}" class="img-fluid rounded"
+                        style="max-height: 55px" /></a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
@@ -33,13 +34,15 @@
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
                     <div class="navbar-item">
-                        <div class="field has-addons">
-                            <div class="control">
-                                <input class="input" type="text" name="search" placeholder="キーワード検索">
-                            </div>
-                            <div class="control">
-                                <a class="button is-primary"><i class="fa fa-search"></i></a>
-                            </div>
+                        <div class="field is-grouped">
+                            <form action="" method="get">
+                                <div class="control">
+                                    <input class="input" name="keyword" type="text" placeholder="キーワードを入力">
+                                </div>
+                                <div class="control">
+                                    <button class="button is-primary" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
@@ -84,11 +87,11 @@
             </div>
         </nav>
     </div>
-        {% block content %}
-        {% endblock %}
-        <footer class="footer">
-            <p>Withdom</p>
-        </footer>
+    {% block content %}
+    {% endblock %}
+    <footer class="footer">
+        <p>Withdom</p>
+    </footer>
 </body>
 
 </html>
