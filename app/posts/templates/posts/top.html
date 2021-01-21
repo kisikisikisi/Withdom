@@ -12,7 +12,7 @@
                 <a class="button is-primary" href="{% url 'accounts:signup' %}">
                     <strong>ユーザー登録</strong>
                 </a>
-                <a class="button is-primary is-outlined" href="{% url 'accounts:signup' %}">
+                <a class="button is-primary is-outlined" href="/about">
                     <strong>CreHubって何？</strong>
                 </a>
             </div>
@@ -83,7 +83,7 @@
         <div class="tabs is-toggle">
             <ul>
               <li class="is-active">
-                <a>
+                <a href="{% url 'posts:index' %}">
                   <span>人気記事</span>
                 </a>
               </li>
@@ -99,7 +99,7 @@
               </li>
               <li>
                 <a>
-                  <span>ベスト記事</span>
+                  <span>最新</span>
                 </a>
               </li>
             </ul>
