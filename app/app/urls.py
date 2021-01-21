@@ -23,6 +23,7 @@ from django.views.generic import base
 urlpatterns = [
     path('posts/', include('posts.urls')),
     path('', views.top, name='top'),
+    path('about/', views.about, name='about'),
     path("api/like/<int:post_id>/", views.api_like, name="api_like"),
     path('admin/', admin.site.urls),
     path('posts/<int:post_id>/', views.post_detail, name="post_detail"),

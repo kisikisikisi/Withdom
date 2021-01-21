@@ -15,6 +15,8 @@ def index(request):
     posts = Post.objects.order_by('-published')
     return render(request, 'posts/index.html', {'posts': posts})
 
+def about(request):
+    return render(request, 'posts/about.html')
 
 def top(request):
     posts = Post.objects.order_by('-published')
