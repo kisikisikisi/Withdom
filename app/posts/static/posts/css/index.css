@@ -24,9 +24,32 @@ body {
     bottom: 0;
 }
 
-.container {
-    margin-right: 25%;
-    margin-left: 3.5%;
+.containers {
+    margin-right: 22%;
+    margin-left: 20.5%;
+}
+
+.tabs .container a {
+    color: white;
+    background-color: #57d8c5;
+}
+
+.tabs .container {
+    margin-left: 3.8%;
+    font-weight: bold;
+}
+
+.container span {
+    font-size: 17px;
+    padding: 0px;
+    font-weight: bold;
+}
+.container a:checked {
+    background-color: black;
+}
+
+.container li {
+    color: white;
 }
 
 .media a {
@@ -49,8 +72,19 @@ body {
 
 .categolize-menu {
     position: absolute;
-    width: 20%;
+    background-color: white;
+    width: 18%;
     margin-left: 2.5%;
+    margin-top: 5%;
+    border-radius: 5px;
+    box-shadow: 0 0 8px 2px rgb(230, 228, 228);
+}
+
+.categolize-icon {
+    float: left;
+    margin-left: 2.5%;
+    margin-top: 2%;
+    font-weight: bold;
 }
 
 .errorlist {
@@ -142,14 +176,59 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
     
 }
 
-.tabs a{
-    background-color: white;
-}
+
 
 .navbar-start .control {
     display:  inline-block;
 }
 
-.tabs a:active {
-    background-color: tomato;
+.about-intro {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    height: 1000px;
+    background-color:#57d8c5;
+    color: white;
+    border-radius: 10px;
+    margin-left: 4%;
+    margin-right: 4%;
+    box-shadow: 0 0 6px -2px rgb(180, 180, 180);
+    animation: fadeIn 2s ease 0.3s 1 normal;
+}
+
+.about-message {
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: BlinkMacSystemFont
+}
+
+.about-item {
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    font-size: 23px;
+    float: left;
+    width: 30%
+}
+
+.about-item2 {
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    font-size: 23px;
+    float: right;
+    width: 30%
+}
+
+.about-item3 {
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    font-size: 23px;
+    width: 30%;
+    margin-left:auto;
+    margin-right: auto;
 }

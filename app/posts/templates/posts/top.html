@@ -21,6 +21,36 @@
     <img src="{% static 'posts/images/te.png' %}">
 </div>
 <div class="main-contents">
+    <div class="categolize-icon">
+        <span class="icon has-text-info">
+            <i class="fas fa-tag" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+        </span>
+        <span>タグ一覧</span>
+    </div>
+    <div class="categolize-menu">
+        <aside class="menu">
+            <ul class="menu-list">
+                <li><a>Dashboard</a></li>
+                <hr class="navbar-divider">
+                <li><a>Customers</a></li>
+                <hr class="navbar-divider">
+                <li><a>Team Settings</a></li>
+                <hr class="navbar-divider">
+                <li>
+                    <a class="is-active">Manage Your Team</a>
+                    <ul>
+                        <li><a>Members</a></li>
+                        <li><a>Plugins</a></li>
+                        <li><a>Add a member</a></li>
+                    </ul>
+                </li>
+                <li><a>Invitations</a></li>
+                <hr class="navbar-divider">
+                <li><a>Cloud Storage Environment Settings</a></li>
+                <hr class="navbar-divider">
+                <li><a>Authentication</a></li>
+        </aside>
+    </div>
     <br />
     <div class="user-card">
         <div class="card">
@@ -79,66 +109,92 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="tabs is-toggle">
-            <ul>
-              <li class="is-active">
-                <a href="{% url 'posts:index' %}">
-                  <span>人気記事</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span>今週</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span>今月</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span>最新</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        {% for post in posts.all%}
-        <div class="box">
-            <article class="media">
-                <a href="{% url 'post_detail' post.id %}">
-                    <div class="media-left">
-                        {% if post.image %}
-                        <figure class="image is-64x64">
-                            <img src="{{ post.image.url }}" alt="Image">
-                        </figure>
-                        {% endif %}
+    <div class="containers">
+        <section class="hero">
+            <div class="hero-foot">
+                <nav class="tabs is-toggle">
+                    <div class="container">
+                        <span class="icon has-text-info">
+                            <i class="fas fa-chart-line" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+                        </span>
+                        <span>トレンド</span>
+                        <ul>
+                            <li class="tab is-active" onclick="openTab(event,'WebDev')"><a>今日</a></li>
+                            <li class="tab" onclick="openTab(event,'WebAud')"><a>今週</a></li>
+                            <li class="tab" onclick="openTab(event,'Support')"><a>今月</a></li>
+                            <li class="tab" onclick="openTab(event,'All')"><a>全期間</a></li>
+                        </ul>
                     </div>
-                    <div class="media-content">
-                        <div class="content">
-                            <strong>{{ post.title }}</strong><br>
-                            <small>{{ post.published }}</small>
-                            <small>{{ post.author }}</small>
-                            <br>
-                            {{ post.summary|markdown|safe }}
-                        </div>
-                        <nav class="level is-mobile">
-                            <div class="level-left">
-                                <p><span id="like">{{ post.like }}</span>いいね！</p>
-                                <a class="level-item" aria-label="like">
-                                    <span class="icon is-small has-text-info">
-                                        <i class="fas fa-star" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
-                                    </span>
-                                </a>
+                </nav>
+            </div>
+        </section>
+
+        <div class="container section">
+            <div id="WebDev" class="content-tab">
+                {% for post in posts.all%}
+                <div class="box">
+                    <article class="media">
+                        <a href="{% url 'post_detail' post.id %}">
+                            <div class="media-left">
+                                {% if post.image %}
+                                <figure class="image is-64x64">
+                                    <img src="{{ post.image.url }}" alt="Image">
+                                </figure>
+                                {% endif %}
                             </div>
-                        </nav>
-                    </div>
-            </article>
-            </a>
+                            <div class="media-content">
+                                <div class="content">
+                                    <strong>{{ post.title }}</strong><br>
+                                    <small>{{ post.published }}</small>
+                                    <small>{{ post.author }}</small>
+                                    <br>
+                                    {{ post.summary|markdown|safe }}
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <p><span id="like" style="font-weight:normal;">{{ post.like }}</span>いいね！</p>
+                                        <a class="level-item" aria-label="like">
+                                            <span class="icon is-small has-text-info">
+                                                <i class="fas fa-star" aria-hidden="true"
+                                                    style="color: rgb(50, 231, 177);"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                    </article>
+                    </a>
+                </div>
+
+                {% endfor %}
+            </div>
+            <div id="WebAud" class="content-tab" style="display:none">
+                <p>
+                    test2<br>
+                    Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                    of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+                    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in
+                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
+                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            <div id="Support" class="content-tab" style="display:none">
+                <p>
+                    test3 <br>
+                    Specification Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                    has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                    galley of type and scrambled it to make a type specimen book. It has survived not only five
+                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                    popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.</p>
+            </div>
+            <div id="All" class="content-tab" style="display:none">
+                <p>
+                    all</p>
+            </div>
         </div>
 
-        {% endfor %}
         <br />
     </div>
 </div>

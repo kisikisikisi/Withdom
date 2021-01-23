@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer></script>
+    <script src="{% static 'posts/js/tabs.js' %}"></script>
     <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'posts/favicon.ico' %}">
-    <link href="{% static 'mdeditor/css/editormd.min.css' %}" rel="stylesheet">
-    <link href="{% static 'mdeditor/css/editormd.preview.css' %}" rel="stylesheet">
-    <title>Withdom</title>
+    <link href="{% static 'posts/mdeditor/css/editormd.min.css' %}" rel="stylesheet">
+    <link href="{% static 'posts/mdeditor/css/editormd.preview.css' %}" rel="stylesheet">
+    <title>CreHub</title>
 </head>
 
 <body>
@@ -90,7 +91,7 @@
     {% block content %}
     {% endblock %}
     <footer class="footer">
-        <p>Withdom</p>
+        <p>CreHub</p>
     </footer>
 </body>
 
