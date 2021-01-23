@@ -2,7 +2,26 @@
 {% block content %}
 {% load static %}
 {% load markdown_extras %}
-
-<p>CreHubとは</p>
+<div class="about-intro">
+    <div class="about-message">
+        <p>Share your creativity</p>
+        <h3 style="font-size: 20px;">CreHubはあなたの「創る」を共有する場です</h3>
+        
+        <br />
+        <div class="about-item">
+            <p>創ったものを宣伝しよう</p>
+            <img src="{% static 'posts/images/fast.png' %}">
+            <p>あなたの創ったものに関して記事を書こう。そうすればユーザも増えるかも。</p>
+        </div>
+        <div class="about-item2">
+            <p>開発・運営資金を集めよう</p>
+            <img src="{% static 'posts/images/smart.png' %}">
+        </div>
+        <div class="about-item3">
+            <p>知識を共有しよう</p>
+            <img src="{% static 'posts/images/happy.png' %}">
+        </div>
+    </div>
+</div>
 
 {% endblock %}
