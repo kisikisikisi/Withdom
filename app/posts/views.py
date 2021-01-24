@@ -10,6 +10,8 @@ from django.db.models import Q
 from django.contrib import messages
 from functools import reduce
 from operator import and_
+from taggit.models import Tag
+
 
 def index(request):
     posts = Post.objects.order_by('-published')
@@ -54,6 +56,7 @@ def add(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+            form.save_m2m()
             return redirect('posts:index')
     else:
         form = PostAddForm()
@@ -92,3 +95,7 @@ def api_like(request, post_id):
     post.like += 1
     post.save()
     return JsonResponse({"like": post.like})
+
+def get_tags(request):
+    tags = Tag.objects.all()
+    return tags
