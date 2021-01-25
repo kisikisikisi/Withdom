@@ -30,7 +30,7 @@
                 <div class="media">
                     <div class="media-left">
                         <figure class="image is-64x64">
-                            <img class="is-rounded" src="{% static 'posts/logo3.png' %}">
+                            <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
                         </figure>
                     </div>
                     <div class="media-content">
@@ -52,7 +52,7 @@
                 <div class="media">
                     <div class="media-left">
                         <figure class="image is-64x64">
-                            <img class="is-rounded" src="{% static 'posts/logo3.png' %}">
+                            <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
                         </figure>
                     </div>
                     <div class="media-content">
@@ -75,17 +75,25 @@
         </div>
     </div>
 
-    <div class="container">
-        <br /><br />
-        <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+    <div class="containers-detail">
+        <br />
+        <a href="{% url 'post_detail' post.id %}">
+            <h1 style="font-size: 30px;">{{ post.title }}</h1>
+        </a>
+        <br />
+        {% for tag in post.tags.all %}
+        <button class="button is-success is-small is-rounded">{{ tag }}</button> {% endfor %} 
         <br /><br />
         {{ post.published }}
+        {{ post.author }}
         <br /><br />
         {% if post.image %}
         <img src="{{ post.image.url }}" class="img-fluid rounded" style="max-height: 200px" />
         {% endif %}
         <br /><br />
-        {{ post.body|markdown|safe }}
+        <div class="post-body">
+            {{ post.body|markdown|safe }}
+        </div>
         <br /><br />
         <div class="level-left">
             <p><span id="like">{{ post.like }}</span>いいね！</p>
@@ -105,9 +113,9 @@
             <textarea name="text" id="com" cols="30" rows="10"></textarea>
             <button type="submit">投稿</button>
         </form>
-    
+
         {% for comment in post.comments.all %}
-            <p>{{ comment.text }}</br><small>{{ comment.posted_at }}</small></p>
+        <p>{{ comment.text }}</br><small>{{ comment.posted_at }}</small></p>
         {% empty %}
         <p>コメントはありません</p>
         {% endfor %}

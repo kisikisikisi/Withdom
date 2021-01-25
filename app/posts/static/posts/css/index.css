@@ -29,6 +29,25 @@ body {
     margin-left: 20.5%;
 }
 
+.containers-detail {
+    margin-right: 24%;
+    margin-left: 2.5%;
+    margin-bottom: 3%;
+    background-color: white;
+    box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.containers-detail h1 {
+    color: black;
+}
+
+.search-result {
+    margin-right: 24%;
+    margin-left: 24%;
+}
+
 .tabs .container a {
     color: white;
     background-color: #57d8c5;
