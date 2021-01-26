@@ -25,11 +25,11 @@ class Post(models.Model):
 
     def get_tags(self):
         tags = list(Tag.objects.all())
-        menu = []
+        menu = {}
         for tag in tags:
             count = len(Post.objects.filter(tags__name__in=[tag]))
             if count > 0:
-                menu.append([str(tag), "("+str(count)+")"])
+                menu[str(tag)] = "("+str(count)+")"
         return menu
 
 

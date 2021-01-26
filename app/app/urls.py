@@ -26,6 +26,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path("api/like/<int:post_id>/", views.api_like, name="api_like"),
     path('admin/', admin.site.urls),
+    path('categol_list/<str:categol>/', views.categol_list, name='categol_list'),
     path('posts/<int:post_id>/', views.post_detail, name="post_detail"),
     path('posts/<int:post_id>/like/', views.like, name='like'),
     path('accounts/', include('accounts.urls')),

@@ -17,8 +17,10 @@ def index(request):
     posts = Post.objects.order_by('-published')
     return render(request, 'posts/index.html', {'posts': posts})
 
+
 def about(request):
     return render(request, 'posts/about.html')
+
 
 def top(request):
     posts = Post.objects.order_by('-published')
@@ -33,7 +35,8 @@ def top(request):
                 q_list += word
 
         query = reduce(
-                    and_, [Q(title__icontains=q) | Q(body__icontains=q) for q in q_list]
+                    and_, [Q(title__icontains=q) | Q(body__icontains=q)
+                             for q in q_list]
                 )
         posts = posts.filter(query)
         messages.success(request, '「{}」の検索結果'.format(keyword))
@@ -96,6 +99,9 @@ def api_like(request, post_id):
     post.save()
     return JsonResponse({"like": post.like})
 
-def get_tags(request):
-    tags = Tag.objects.all()
-    return tags
+
+def categol_list(request, categol):
+    posts = Post.objects.filter(tags__name__in=[categol])
+    return render(request, 'posts/index.html', {'posts': posts})
+
+
