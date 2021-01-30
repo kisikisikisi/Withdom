@@ -25,12 +25,11 @@
             <ul class="menu-list">
                 <hr class="navbar-divider">
                 {% for post in posts.all|slice:":1" %}
-                {% for tag in post.get_tags %}
-                <li><a>
-                        {% for categol in tag %}
-                        {{ categol }}
-                        {% endfor %}
-                    </a></li>
+                {% for tag, num in post.get_tags.items %}
+                <li>
+                    <span><a href="{% url 'categol_list' tag %}">{{ tag }}{{ num }}</a></span>
+
+                </li>
                 <hr class="navbar-divider">
                 {% endfor %}
                 {% endfor %}
