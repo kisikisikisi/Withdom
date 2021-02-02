@@ -4,7 +4,7 @@
 {% load markdown_extras %}
 <div class="top-intro">
     <div class="top-message">
-        <h2>Welcome to CreHub!</h2>
+        <h2 style="font-family:arial black">Share your creativity</h2>
         <p>あなたの「創る」を共有しましょう</p>
         <br />
         <div class="navbar-item">
@@ -34,7 +34,7 @@
                 {% for post in posts.all|slice:":1" %}
                 {% for tag, num in post.get_tags.items %}
                 <li>
-                    <span><a href="{% url 'categol_list' tag %}">{{ tag }}{{ num }}</a></span>
+                    <span><a href="{% url 'categol_list' tag %}">{{ tag }}({{ num }})</a></span>
 
                 </li>
                 <hr class="navbar-divider">

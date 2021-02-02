@@ -16,6 +16,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='media/', blank=True)
     body = MDTextField()
     like = models.IntegerField(default=0)
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -29,8 +30,9 @@ class Post(models.Model):
         for tag in tags:
             count = len(Post.objects.filter(tags__name__in=[tag]))
             if count > 0:
-                menu[str(tag)] = "("+str(count)+")"
-        return menu
+                menu[str(tag)] = count
+        menu_sorted = sorted(menu.items(), key=lambda x:x[1], reverse=True)
+        return dict(menu_sorted)
 
 
 class Comment(models.Model):
