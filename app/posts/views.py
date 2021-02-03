@@ -21,7 +21,6 @@ def index(request):
 def about(request):
     return render(request, 'posts/about.html')
 
-
 def top(request):
     posts = Post.objects.order_by('-published')
     keyword = request.GET.get('keyword')
@@ -47,6 +46,8 @@ def top(request):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+    post.views += 1
+    post.save()
     if request.method == "POST":
         Comment.objects.create(text=request.POST["text"], article=post)
     return render(request, 'posts/post_detail.html', {'post': post})

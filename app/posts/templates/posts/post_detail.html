@@ -80,13 +80,14 @@
         <a href="{% url 'post_detail' post.id %}">
             <h1 style="font-size: 30px;">{{ post.title }}</h1>
         </a>
+        <p>アクセス数:{{ post.views }}</p>
         <br />
         {% for tag in post.tags.all %}
         <button class="button is-success is-small is-rounded">{{ tag }}</button> {% endfor %} 
         <br /><br />
         {{ post.published }}
         {{ post.author }}
-        <br /><br />
+        <br />
         {% if post.image %}
         <img src="{{ post.image.url }}" class="img-fluid rounded" style="max-height: 200px" />
         {% endif %}
