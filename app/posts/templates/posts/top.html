@@ -71,7 +71,6 @@
 
                     <p>投稿数 : 0</p>
                     <p>いいね数 : 0</p>
-                    <p>ブックマーク数 : 0</p>
                     <p>総アクセス数 : 0</p>
                     <hr>
                     <a href="{% url 'posts:add' %}">
@@ -93,14 +92,17 @@
                     </div>
                 </div>
                 <div class="content">
+                    {% for post in posts.all|slice:":1" %}
+                    {% for p in post.get_posts_count|slice:":15" %}
                     <p>投稿数 : {{ post.count }} </p>
                     <p>いいね数 : 0</p>
-                    <p>ブックマーク数 : 0</p>
                     <p>総アクセス数 : 0</p>
                     <hr>
                     <a href="{% url 'accounts:signup' %}">
                         <strong>記事を書く</strong>
                     </a>
+                    {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
             {% endif %}
@@ -115,12 +117,11 @@
                         <span class="icon has-text-info">
                             <i class="fas fa-chart-line" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
                         </span>
-                        <span>トレンド</span>
+                        <span style="font-weight: inherit; font-size: 1em;">トレンド</span>
                         <ul>
-                            <li class="tab is-active" onclick="openTab(event,'WebDev')"><a>今日</a></li>
-                            <li class="tab" onclick="openTab(event,'WebAud')"><a>今週</a></li>
-                            <li class="tab" onclick="openTab(event,'Support')"><a>今月</a></li>
-                            <li class="tab" onclick="openTab(event,'All')"><a>全期間</a></li>
+                            <li class="tab is-active" onclick="openTab(event,'WebDev')"><a>最新</a></li>
+                            <li class="tab" onclick="openTab(event,'WebAud')"><a>いいね数</a></li>
+                            <li class="tab" onclick="openTab(event,'Support')"><a>アクセス数</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -128,7 +129,7 @@
         </section>
         <div class="container section">
             <div id="WebDev" class="content-tab">
-                {% for post in posts.all%}
+                {% for post in posts.all|slice:":15" %}
                 <div class="box">
                     <article class="media">
                         <a href="{% url 'post_detail' post.id %}">
@@ -169,29 +170,89 @@
                 {% endfor %}
             </div>
             <div id="WebAud" class="content-tab" style="display:none">
-                <p>
-                    test2<br>
-                    Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                    of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                    also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in
-                    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                {% for post in posts.all|slice:":1" %}
+                {% for p in post.sort_like|slice:":15" %}
+                <div class="box">
+                    <article class="media">
+                        <a href="{% url 'post_detail' post.id %}">
+                            <div class="media-left">
+                                {% if p.image %}
+                                <figure class="image is-64x64">
+                                    <img src="{{ p.image.url }}" alt="Image">
+                                </figure>
+                                {% endif %}
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <strong>{{ p.title }}</strong><br>
+                                    <small>{{ p.published }}</small>
+                                    <small>{{ p.author }}</small>
+                                    {% for tag in p.tags.all %}
+                                    <button class="button is-success is-small is-rounded">{{ tag }}</button>
+                                    {% endfor %}
+                                    <br>
+                                    {{ p.summary|markdown|safe }}
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <p><span id="like" style="font-weight:normal;">{{ p.like }}</span>いいね！</p>
+                                        <a class="level-item" aria-label="like">
+                                            <span class="icon is-small has-text-info">
+                                                <i class="fas fa-star" aria-hidden="true"
+                                                    style="color: rgb(50, 231, 177);"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                    </article>
+                    </a>
+                </div>
+                {% endfor %}
+                {% endfor %}
+
             </div>
             <div id="Support" class="content-tab" style="display:none">
-                <p>
-                    test3 <br>
-                    Specification Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                    popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                    Ipsum.</p>
-            </div>
-            <div id="All" class="content-tab" style="display:none">
-                <p>
-                    all</p>
+                {% for post in posts.all|slice:":1" %}
+                {% for p in post.sort_views|slice:":15" %}
+                <div class="box">
+                    <article class="media">
+                        <a href="{% url 'post_detail' post.id %}">
+                            <div class="media-left">
+                                {% if p.image %}
+                                <figure class="image is-64x64">
+                                    <img src="{{ p.image.url }}" alt="Image">
+                                </figure>
+                                {% endif %}
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <strong>{{ p.title }}</strong><br>
+                                    <small>{{ p.published }}</small>
+                                    <small>{{ p.author }}</small>
+                                    {% for tag in p.tags.all %}
+                                    <button class="button is-success is-small is-rounded">{{ tag }}</button>
+                                    {% endfor %}
+                                    <br>
+                                    {{ p.summary|markdown|safe }}
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <p><span id="like" style="font-weight:normal;">{{ p.like }}</span>いいね！</p>
+                                        <a class="level-item" aria-label="like">
+                                            <span class="icon is-small has-text-info">
+                                                <i class="fas fa-star" aria-hidden="true"
+                                                    style="color: rgb(50, 231, 177);"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                    </article>
+                    </a>
+                </div>
+                {% endfor %}
+                {% endfor %}
             </div>
         </div>
         <br />

@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from taggit.models import Tag
+from markdown import markdown
 
 # Create your models here.
 
@@ -33,6 +34,18 @@ class Post(models.Model):
                 menu[str(tag)] = count
         menu_sorted = sorted(menu.items(), key=lambda x:x[1], reverse=True)
         return dict(menu_sorted)
+
+    def sort_like(self):
+        posts = Post.objects.order_by('-like')
+        return posts
+
+    def sort_views(self):
+        posts = Post.objects.order_by('-views')
+        return posts
+    
+    def get_posts_count(self, username):
+        posts = Post.objects.filter(author=username)
+        print(len(posts))
 
 
 class Comment(models.Model):
