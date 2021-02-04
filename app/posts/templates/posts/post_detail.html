@@ -2,98 +2,105 @@
 {% block content %}
 {% load static %}
 {% load markdown_extras %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/atom-one-dark.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
 
-<script>
-    function api_like() {
-        var api_url = "{% url 'api_like' post.id %}";
-        var btn = document.getElementById("like");
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                var received_data = JSON.parse(request.responseText);
-                btn.innerText = received_data.like;
+<body>
+    <script>
+        function api_like() {
+            var api_url = "{% url 'api_like' post.id %}";
+            var btn = document.getElementById("like");
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (request.readyState === 4 && request.status === 200) {
+                    var received_data = JSON.parse(request.responseText);
+                    btn.innerText = received_data.like;
+                }
             }
+            request.open("GET", api_url);
+            request.send();
         }
-        request.open("GET", api_url);
-        request.send();
-    }
-</script>
-<div class="main-contents">
-    <br />
+    </script>
 
-    <div class="user-card">
-        <div class="card">
-            <div class="card-image">
+    <div class="main-contents">
+        <br />
+
+        <div class="user-card">
+            <div class="card">
+                <div class="card-image">
+                </div>
+                {% if user.id %}
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-64x64">
+                                <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">{{ user.username }}</p>
+                            <p class="subtitle is-6">@userid</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p>投稿数 : 0</p>
+                        <p>いいね数 : 0</p>
+                        <p>ブックマーク数 : 0</p>
+                        <p>総アクセス数 : 0</p>
+                        <hr>
+                        <p>記事を書く</p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-64x64">
+                                <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">ゲスト</p>
+                            <p class="subtitle is-6">@userid</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p>投稿数 : 0</p>
+                        <p>いいね数 : 0</p>
+                        <p>ブックマーク数 : 0</p>
+                        <p>総アクセス数 : 0</p>
+                        <hr>
+                        <a href="{% url 'accounts:signup' %}">
+                            <strong>記事を書く</strong>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
-            {% if user.id %}
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-64x64">
-                            <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4">{{ user.username }}</p>
-                        <p class="subtitle is-6">@userid</p>
-                    </div>
-                </div>
-                <div class="content">
-                    <p>投稿数 : 0</p>
-                    <p>いいね数 : 0</p>
-                    <p>ブックマーク数 : 0</p>
-                    <p>総アクセス数 : 0</p>
-                    <hr>
-                    <p>記事を書く</p>
-                </div>
-            </div>
-            {% else %}
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-64x64">
-                            <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4">ゲスト</p>
-                        <p class="subtitle is-6">@userid</p>
-                    </div>
-                </div>
-                <div class="content">
-                    <p>投稿数 : 0</p>
-                    <p>いいね数 : 0</p>
-                    <p>ブックマーク数 : 0</p>
-                    <p>総アクセス数 : 0</p>
-                    <hr>
-                    <a href="{% url 'accounts:signup' %}">
-                        <strong>記事を書く</strong>
-                    </a>
-                </div>
-            </div>
-            {% endif %}
         </div>
-    </div>
 
-    <div class="containers-detail">
-        <br />
-        <a href="{% url 'post_detail' post.id %}">
-            <h1 style="font-size: 30px;">{{ post.title }}</h1>
-        </a>
-        <p>アクセス数:{{ post.views }}</p>
-        <br />
-        {% for tag in post.tags.all %}
-        <button class="button is-success is-small is-rounded">{{ tag }}</button> {% endfor %} 
-        <br /><br />
-        {{ post.published }}
-        {{ post.author }}
-        <br />
-        {% if post.image %}
-        <img src="{{ post.image.url }}" class="img-fluid rounded" style="max-height: 200px" />
-        {% endif %}
-        <br /><br />
-        <div class="post-body">
-            {{ post.body|markdown|safe }}
+        <div class="containers-detail">
+            <br />
+            <a href="{% url 'post_detail' post.id %}">
+                <h1 style="font-size: 30px;">{{ post.title }}</h1>
+            </a>
+            <p>アクセス数:{{ post.views }}</p>
+            <br />
+            {% for tag in post.tags.all %}
+            <button class="button is-success is-small is-rounded">{{ tag }}</button> {% endfor %}
+            <br /><br />
+            {{ post.published }}
+            {{ post.author }}
+            <br />
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="img-fluid rounded" style="max-height: 200px" />
+            {% endif %}
+            <br /><br />
+            <div class="content">
+                {{ post.body|markdown|safe }}
+            </div>
         </div>
         <br /><br />
         <div class="level-left">
@@ -128,33 +135,8 @@
             style="float: right;">編集</button>
         {% endif %}
         <br /><br />
-
-
+    </div>
 
     </div>
-    <script src="{% static 'mdeditor/js/jquery.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/editormd.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/lib/marked.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/lib/prettify.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/lib/raphael.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/lib/underscore.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/lib/sequence-diagram.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/lib/flowchart.min.js' %}"></script>
-    <script src="{% static 'mdeditor/js/lib/jquery.flowchart.min.js' %}"></script>
-    <script>
-        $(function () {
-            editormd.markdownToHTML("content", {
-                emoji: true,
-                taskList: true,
-                tex: true,
-                flowChart: true,
-                sequenceDiagram: true,
-            });
-            $(".reference-link").each(function (i, obj) {
-                console.log(obj)
-            })
-        })
-    </script>
-</div>
 </body>
 {% endblock %}

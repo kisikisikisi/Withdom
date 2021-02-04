@@ -36,7 +36,7 @@ body {
     background-color: white;
     box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
     border-radius: 4px;
-    padding: 10px;
+    padding: 30px;
 }
 
 .containers-detail h1 {
@@ -277,4 +277,8 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
     width: 30%;
     margin-left:auto;
     margin-right: auto;
+}
+
+.content pre {
+    padding: 0px;
 }
