@@ -230,8 +230,8 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 
 .about-intro {
     margin-top: 20px;
-    margin-bottom: 5px;
-    height: 1000px;
+    margin-bottom: 20px;
+    height: auto;
     background-color:#57d8c5;
     color: white;
     border-radius: 10px;
@@ -252,33 +252,57 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 }
 
 .about-item {
-    background-color: white;
+    background-color: #effaf4;
     border-radius: 10px;
-    color: black;
+    color: #57d8c5;
     font-size: 23px;
-    float: left;
-    width: 30%
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    margin-bottom: 5%;
 }
 
-.about-item2 {
-    background-color: white;
-    border-radius: 10px;
-    color: black;
-    font-size: 23px;
-    float: right;
-    width: 30%
+.about-item p {
+    font-size: 13px;
 }
 
-.about-item3 {
-    background-color: white;
-    border-radius: 10px;
-    color: black;
-    font-size: 23px;
-    width: 30%;
-    margin-left:auto;
-    margin-right: auto;
+.about-item li {
+    font-size: 24px;
 }
+
+.about-item h1 {
+    text-align: center;
+}
+
+.about-item .icon {
+    margin-left: 45%;
+}
+
 
 .content pre {
     padding: 0px;
+}
+
+.signup-contents {
+    margin-right: 22%;
+    margin-left: 20.5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    background-color: white;
+    box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+    border-radius: 4px;
+}
+
+.login-contents {
+    margin-right: 22%;
+    margin-left: 20.5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    background-color: white;
+    box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+    border-radius: 4px;
+}
+
+.share-sns {
+    float: right;
 }

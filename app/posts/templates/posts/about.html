@@ -6,20 +6,36 @@
     <div class="about-message">
         <p>Share your creativity</p>
         <h3 style="font-size: 20px;">CreHubはあなたの「創る」を共有する場です</h3>
-        
+        <hr>
         <br />
         <div class="about-item">
-            <p>創ったものを宣伝しよう</p>
-            <img src="{% static 'posts/images/fast.png' %}">
-            <p>あなたの創ったものに関して記事を書こう。そうすればユーザも増えるかも。</p>
+            <div class="content is-small">
+                <h1 style="color: #57d8c5;">「創ったもの」「創りたいもの」を共有しよう</h1>
+                <ul>
+                    <span class="icon is-large">
+                        <i class="far fa-newspaper" aria-hidden="true" style="color:rgb(158, 158, 9); font-size: 35px; "></i>
+                    </span>
+                    <li>Promotion・・・<span style="color: black; font-size: 15px;">「せっかく創ったサービスにユーザが集まらない」/「創りたいサービスがあるけどユーザが集まらなかったらどうしよう」。そんな時はCreHubで記事を書いて宣伝してみましょう。ユーザが増えるかもしれません。</span></li>
+                    <span class="icon is-large">
+                        <i class="fab fa-btc" aria-hidden="true" style="color:rgb(158, 158, 9); font-size: 35px; "></i>
+                    </span>
+                    <li>Funding・・・<span style="color: black; font-size: 15px;">「創ったサービスに費用がかかる」/「創りたいサービスには費用がかかる」そんな時はCreHubで記事を書いて資金集めをしてみましょう。CreHubでは仮想通貨による投げ銭を受けることが出来ます。</span></li>
+                    <span class="icon is-large">
+                        <i class="far fa-question-circle" aria-hidden="true" style="color:rgb(158, 158, 9); font-size: 35px; "></i>
+                    </span>
+                    <li>Improvement・・・<span style="color: black; font-size: 15px;">「創ったサービスのクオリティをもっと上げたい」/「創りたいサービスに必要な技術を知りたい」。そんな時はCreHubで記事を書いて質問してみましょう。有識者が知恵を貸してくれるかもしれません。</span></li>
+                    <span class="icon is-large">
+                        <i class="far fa-handshake" aria-hidden="true" style="color:rgb(158, 158, 9); font-size: 35px; "></i>
+                    </span>
+                    <li>Gathering friends・・・<span style="color: black; font-size: 15px;">「チーム開発がしたい」/「開発する仲間がほしい」。そんな時はCreHubで記事を書いて仲間を募集してみましょう。気の合う友達ができるかもしれません。</span></li>
+                </ul>
+            </div>
         </div>
-        <div class="about-item2">
-            <p>開発・運営資金を集めよう</p>
-            <img src="{% static 'posts/images/smart.png' %}">
-        </div>
-        <div class="about-item3">
-            <p>知識を共有しよう</p>
-            <img src="{% static 'posts/images/happy.png' %}">
+        <br />
+        <div class="buttons">
+            <a class="button is-success" href="{% url 'accounts:signup' %}" style="margin-bottom: 5%; width: 50%; margin-left: 25%;">
+                <strong>Join</strong>
+            </a>
         </div>
     </div>
 </div>
