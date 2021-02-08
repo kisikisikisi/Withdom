@@ -32,14 +32,6 @@
                 <div class="navbar-start">
                     <div class="navbar-item">
                         <div class="field is-grouped">
-                            <form action="" method="get">
-                                <div class="control">
-                                    <input class="input" name="keyword" type="text" placeholder="キーワードを入力">
-                                </div>
-                                <div class="control">
-                                    <button class="button is-primary" type="submit"><i class="fa fa-search"></i></button>
-                                </div>
-                            </form>
                         </div>
                     </div>
 
@@ -85,33 +77,35 @@
         </nav>
     </div>
 
-    <div class='container'>
-        <br /><br />
-        <h2 class="signup-title">Withdomへようこそ！</h2>
-        <form action="{% url 'accounts:signup' %}" method="post">
-            {{ form.non_field_errors }}
-            {% csrf_token %} 
-            {% for field in form %}
-            <div class="signup">
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.help_text %}
-                <span class="helptext">{{ field.help_text }}</span>
-                {% endif %}
-                {{ field.errors }}
-            </div>
-            {% endfor %}
-            <br />
-            <input type="submit" value="登録" style="width:100%;" class="button is-primary" href="{% url 'accounts:signup' %}">
-        </form>
-        <p>登録済みの場合は→<a href="{% url 'accounts:login' %}">ログイン</a></p>
-        <br /><br />
-
+    <div class='signup-contents'>
+        <div class='containers'>
+            <br /><br />
+            <h2 class="signup-title">CreHubへようこそ！</h2>
+            <form action="{% url 'accounts:signup' %}" method="post">
+                {{ form.non_field_errors }}
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="signup">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                    <span class="helptext">{{ field.help_text }}</span>
+                    {% endif %}
+                    {{ field.errors }}
+                </div>
+                {% endfor %}
+                <br />
+                <input type="submit" value="登録" style="width:100%;" class="button is-primary"
+                    href="{% url 'accounts:signup' %}">
+            </form>
+            <p>登録済みの場合は→<a href="{% url 'accounts:login' %}">ログイン</a></p>
+            <br /><br />
+        </div>
     </div>
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Withdom</strong>
+                <strong>CreHub</strong>
             </p>
         </div>
     </footer>

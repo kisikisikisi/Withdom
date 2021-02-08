@@ -36,7 +36,7 @@ class SignUpForm(forms.Form):
     def send_message(self, email, username):
         from_email = 'withdom.manager@gmail.com'  # 送信者
         subject = "[Withdom]登録確認のお知らせ"
-        message = username + "様\nWithdomへのご登録ありがとうございます。\n\n下記内容にてユーザー登録が完了しました\nユーザー名："+username+"\nメールアドレス："+email+"\n\n\n-----------------------------------------------------------------\n発行元：Withdom運営\n問い合わせ先："+from_email
+        message = username + "様\nCreHubへのご登録ありがとうございます。\n\n下記内容にてユーザー登録が完了しました\nユーザー名："+username+"\nメールアドレス："+email+"\n\n\n-----------------------------------------------------------------\n発行元：CreHub運営\n問い合わせ先："+from_email
         recipient_list = [email]  # 宛先リスト
         send_mail(subject, message, from_email, recipient_list)
 

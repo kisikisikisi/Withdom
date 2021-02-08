@@ -10,7 +10,7 @@
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer></script>
     <link rel="icon" type="image/x-icon" href="{% static 'posts/images/favicon.ico' %}">
 
-    <title>ユーザー登録画面</title>
+    <title>ログイン画面</title>
 </head>
 
 <body>
@@ -33,14 +33,6 @@
                 <div class="navbar-start">
                     <div class="navbar-item">
                         <div class="field is-grouped">
-                            <form action="" method="get">
-                                <div class="control">
-                                    <input class="input" name="keyword" type="text" placeholder="キーワードを入力">
-                                </div>
-                                <div class="control">
-                                    <button class="button is-primary" type="submit"><i class="fa fa-search"></i></button>
-                                </div>
-                            </form>
                         </div>
                     </div>
 
@@ -86,32 +78,35 @@
         </nav>
     </div>
 
-    <div class='container'>
-        <br /><br />
-        <h2 class="signup-title">ログインページ</h2>
-        <form action="{% url 'accounts:login' %}" method="post">
-            {{ form.non_field_errors }}
-            {% csrf_token %} 
-            {% for field in form %}
-            <div class="signup">
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.help_text %}
-                <span class="helptext">{{ field.help_text }}</span>
-                {% endif %}
-                {{ field.errors }}
-            </div>
-            {% endfor %}
-            <br />
-            <input type="submit" value="ログイン" style="width:100%;" class="button is-primary">
-        </form>
-        <p>アカウントを持っていない場合は→<a href="{% url 'accounts:signup' %}">ユーザー登録</a></p>
+    <div class="login-contents">
+        <div class='containers'>
+            <br /><br />
+            <h2 class="signup-title">ログインページ</h2>
+            <form action="{% url 'accounts:login' %}" method="post">
+                {{ form.non_field_errors }}
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="signup">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                    <span class="helptext">{{ field.help_text }}</span>
+                    {% endif %}
+                    {{ field.errors }}
+                </div>
+                {% endfor %}
+                <br />
+                <input type="submit" value="ログイン" style="width:100%;" class="button is-primary">
+            </form>
+            <p>アカウントを持っていない場合は→<a href="{% url 'accounts:signup' %}">ユーザー登録</a></p>
+            <br /><br />
+        </div>
     </div>
 
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Withdom</strong>
+                <strong>CreHub</strong>
             </p>
         </div>
     </footer>
