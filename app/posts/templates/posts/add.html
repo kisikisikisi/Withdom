@@ -88,7 +88,6 @@
         {{ form.non_field_errors }}
         {% csrf_token %}
         {% for field in form %}
-        {% if field.name != 'author' and field.name != 'published' %}
         <div class="signup">
             {{ form.media }}
             {{ field.label_tag }}
@@ -98,7 +97,6 @@
             {% endif %}
             {{ field.errors }}
         </div>
-        {% endif %}
         {% endfor %}
 
         <br /><br />
@@ -113,7 +111,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Withdom</strong>
+                <strong>CreHub</strong>
             </p>
         </div>
     </footer>

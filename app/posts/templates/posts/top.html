@@ -68,10 +68,6 @@
                     </div>
                 </div>
                 <div class="content">
-
-                    <p>投稿数 : 0</p>
-                    <p>いいね数 : 0</p>
-                    <p>総アクセス数 : 0</p>
                     <hr>
                     <a href="{% url 'posts:add' %}">
                         <strong>記事を書く</strong>
@@ -92,17 +88,13 @@
                     </div>
                 </div>
                 <div class="content">
-                    {% for post in posts.all|slice:":1" %}
-                    {% for p in post.get_posts_count|slice:":15" %}
-                    <p>投稿数 : {{ post.count }} </p>
+                    <p>投稿数 : 0</p>
                     <p>いいね数 : 0</p>
                     <p>総アクセス数 : 0</p>
                     <hr>
                     <a href="{% url 'accounts:signup' %}">
                         <strong>記事を書く</strong>
                     </a>
-                    {% endfor %}
-                    {% endfor %}
                 </div>
             </div>
             {% endif %}
