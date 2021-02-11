@@ -2,6 +2,8 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import *
+from django.contrib.auth import login
+
 
 """
 def index(request):
@@ -12,6 +14,12 @@ def index(request):
     # latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
     # context = {'latest_question_list': latest_question_list}
     return render(request, 'accounts/index.html')
+
+
+def guest_login(request):
+    guest_user = User.objects.get(email='crehub.guest@gmail.com')
+    login(request, guest_user, backend='django.contrib.auth.backends.ModelBackend')
+    return redirect('/')
 
 """
 def detail(request, question_id):
