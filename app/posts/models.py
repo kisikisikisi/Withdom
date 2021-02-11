@@ -13,8 +13,9 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     tags = TaggableManager(blank=True)
     published = models.DateTimeField(default=timezone.now, blank=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(upload_to='media/', blank=True)
+    btc = models.CharField(max_length=100, blank=True, null=True)
     body = MDTextField()
     like = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
@@ -43,9 +44,6 @@ class Post(models.Model):
         posts = Post.objects.order_by('-views')
         return posts
     
-    def get_posts_count(self, username):
-        posts = Post.objects.filter(author=username)
-        print(len(posts))
 
 
 class Comment(models.Model):
