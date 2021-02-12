@@ -7,76 +7,74 @@
     {% load static %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'posts/favicon.ico' %}">
-    <title>Crehub</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'posts/images/favicon.ico' %}">
+    <title>CreHub</title>
 </head>
 
 <body>
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <img src="{% static 'posts/logo2.png' %}" class="img-fluid rounded" style="max-height: 55px" /></a>
+    <div class="header">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="{% static 'posts/images/te-logo.png' %}" class="img-fluid rounded"
+                        style="max-height: 55px" /></a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <div class="navbar-item">
-                    <div class="field has-addons">
-                        <div class="control">
-                            <input class="input" type="text" name="search" placeholder="キーワード検索">
-                        </div>
-                        <div class="control">
-                            <a class="button is-primary"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
 
-            <div class="navbar-end">
-                {% if user.id %}
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        {{ user.username }}
-                    </a>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+                        </div>
+                    </div>
 
-                    <div class="navbar-dropdown is-right">
-                        <a class="navbar-item">
-                            マイページ
+                </div>
+
+                <div class="navbar-end">
+                    {% if user.id %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            {{ user.username }}
                         </a>
-                        <a class="navbar-item" href="{% url 'posts:add' %}">
-                            記事を書く
-                        </a>
-                        <a class="navbar-item">
-                            アクセス解析
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="{% url 'accounts:logout' %}">
-                            ログアウト
-                        </a>
+
+                        <div class="navbar-dropdown is-right">
+                            <a class="navbar-item">
+                                マイページ
+                            </a>
+                            <a class="navbar-item" href="{% url 'posts:add' %}">
+                                記事を書く
+                            </a>
+                            <a class="navbar-item">
+                                アクセス解析
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item" href="{% url 'accounts:logout' %}">
+                                ログアウト
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary" href="{% url 'accounts:signup' %}">
+                                <strong>ユーザー登録</strong>
+                            </a>
+                            <a class="button is-light" href="{% url 'accounts:login' %}">
+                                ログイン
+                            </a>
+                        </div>
                     </div>
                 </div>
-                {% else %}
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-primary" href="{% url 'accounts:signup' %}">
-                            <strong>ユーザー登録</strong>
-                        </a>
-                        <a class="button is-light" href="{% url 'accounts:login' %}">
-                            ログイン
-                        </a>
-                    </div>
-                </div>
+                {% endif %}
             </div>
-            {% endif %}
-        </div>
-    </nav>
+        </nav>
+    </div>
     {% load markdown_extras %}
     {% if user.username == post.author|stringformat:"s" %}
     <form method="POST" enctype="multipart/form-data">
@@ -104,7 +102,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Withdom</strong>
+                <strong>CreHub</strong>
             </p>
         </div>
     </footer>
