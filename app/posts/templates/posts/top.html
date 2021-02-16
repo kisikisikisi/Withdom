@@ -2,6 +2,8 @@
 {% block content %}
 {% load static %}
 {% load markdown_extras %}
+<title>CreHub</title>
+<meta name="description" content="CreHubはプログラマのための「創る」を共有する場です。開発したサービスを記事にして宣伝したり、投げ銭によりサポートを受けることもできます。" />
 <div class="top-intro">
     <div class="top-message">
         <h2 style="font-family:arial black">Share your creativity</h2>
@@ -9,11 +11,14 @@
         <br />
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button is-primary" href="{% url 'accounts:signup' %}">
+                <a class="button is-primary is-rounded" href="{% url 'accounts:signup' %}">
                     <strong>ユーザー登録</strong>
                 </a>
-                <a class="button is-primary is-outlined" href="/about">
+                <a class="button is-primary is-inverted is-rounded" href="/about">
                     <strong>CreHubって何？</strong>
+                </a>
+                <a class="button is-primary is-light is-rounded" href="{% url 'accounts:guest_login' %}">
+                    <strong>ゲストログイン</strong>
                 </a>
             </div>
         </div>
@@ -21,27 +26,29 @@
     <img src="{% static 'posts/images/te.png' %}">
 </div>
 <div class="main-contents">
-    <div class="categolize-icon">
-        <span class="icon has-text-info">
-            <i class="fas fa-tag" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
-        </span>
-        <span>タグ一覧</span>
-    </div>
-    <div class="categolize-menu">
-        <aside class="menu">
-            <ul class="menu-list">
-                <hr class="navbar-divider">
-                {% for post in posts.all|slice:":1" %}
-                {% for tag, num in post.get_tags.items %}
-                <li>
-                    <span><a href="{% url 'categol_list' tag %}">{{ tag }}({{ num }})</a></span>
+    <div class="tag-menu">
+        <div class="categolize-icon">
+            <span class="icon has-text-info">
+                <i class="fas fa-tag" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+            </span>
+            <span>タグ一覧</span>
+        </div>
+        <div class="categolize-menu">
+            <aside class="menu">
+                <ul class="menu-list">
+                    <hr class="navbar-divider">
+                    {% for post in posts.all|slice:":1" %}
+                    {% for tag, num in post.get_tags.items %}
+                    <li>
+                        <span><a href="{% url 'categol_list' tag %}">{{ tag }}({{ num }})</a></span>
 
-                </li>
-                <hr class="navbar-divider">
-                {% endfor %}
-                {% endfor %}
-            </ul>
-        </aside>
+                    </li>
+                    <hr class="navbar-divider">
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </aside>
+        </div>
     </div>
     <br />
     <div class="user-card">
@@ -64,10 +71,12 @@
                     </div>
                     <div class="media-content">
                         <p class="title is-4">{{ user.username }}</p>
-                        <p class="subtitle is-6">@userid</p>
                     </div>
                 </div>
                 <div class="content">
+                    <p>投稿数：{{ posts_count }}</p>
+                    <p>総いいね数：{{ posts_like }}</p>
+                    <p>合計アクセス数：{{ posts_views }}</p>
                     <hr>
                     <a href="{% url 'posts:add' %}">
                         <strong>記事を書く</strong>
@@ -78,19 +87,15 @@
             <div class="card-content">
                 <div class="media">
                     <div class="media-left">
-                        <figure class="image is-64x64">
-                            <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
-                        </figure>
                     </div>
                     <div class="media-content">
-                        <p class="title is-4">ゲスト</p>
-                        <p class="subtitle is-6">@userid</p>
+                        <p class="title is-4">Not logged in</p>
                     </div>
                 </div>
                 <div class="content">
-                    <p>投稿数 : 0</p>
-                    <p>いいね数 : 0</p>
-                    <p>総アクセス数 : 0</p>
+                    <p>投稿数：0</p>
+                    <p>総いいね数：0</p>
+                    <p>合計アクセス数：0</p>
                     <hr>
                     <a href="{% url 'accounts:signup' %}">
                         <strong>記事を書く</strong>
