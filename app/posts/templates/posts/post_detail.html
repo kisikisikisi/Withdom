@@ -6,6 +6,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <title>{{ post.title}} - CreHub</title>
+
 <body>
     <script>
         function api_like() {
@@ -27,6 +28,12 @@
         <br />
 
         <div class="user-card">
+            <div class="card-icon">
+                <span class="icon has-text-info">
+                    <i class="fas fa-address-card" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+                </span>
+                <span>Writer</span>
+            </div>
             <div class="card">
                 <div class="card-image">
                 </div>
@@ -34,16 +41,28 @@
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-64x64">
-                                <img class="is-rounded" src="{% static 'posts/images/logo3.png' %}">
+                                <img class="is-rounded" src="{% static 'posts/images/top-image.png' %}">
                             </figure>
                         </div>
                         <div class="media-content">
                             <p class="title is-4">{{ post.author }}</p>
-                            <p class="subtitle is-6">@userid</p>
                         </div>
                     </div>
                     <div class="content">
-                        <!-- カードの内容 -->
+                        {% if post.btc %}
+                        <div class="throw-money">
+                            <div
+                                onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
+                                <a class="button is-medium" style="cursor:pointer;"><span class="icon is-small">
+                                        <i class="fab fa-btc" aria-hidden="true"
+                                            style="color:rgb(158, 158, 9); font-size: 35px; "></i>
+                                    </span>　投げ銭する</a>
+                            </div>
+                            <div id="open" style="display:none;clear:both;">
+                                {{ post.btc }}
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -58,25 +77,12 @@
             <br />
             {% for tag in post.tags.all %}
             <button class="button is-success is-small is-rounded">{{ tag }}</button> {% endfor %}
-            {% if post.btc %}
-            <div class="throw-money">
-                <div
-                    onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
-                    <a class="button is-medium" style="cursor:pointer;"><span class="icon is-small">
-                            <i class="fab fa-btc" aria-hidden="true"
-                                style="color:rgb(158, 158, 9); font-size: 35px; "></i>
-                        </span>　投げ銭する</a>
-                </div>
-                <div id="open" style="display:none;clear:both;">
-                    {{ post.btc }}
-                </div>
-            </div>
-            {% endif %}
+
             <br /><br />
-            
+
             {{ post.published }}
             {{ post.author }}
-            
+
             <br />
             {% if post.image %}
             <img src="{{ post.image.url }}" class="img-fluid rounded" style="max-height: 200px" />
@@ -98,13 +104,17 @@
             </div>
 
             <div class="share-sns">
-                <a class="button is-small is-facebook is-info" href="http://www.facebook.com/share.php?u={{ request.scheme }}://{{ request.get_host }}{{ request.path }}&t={{ item_obj.title }}" target="_blank">
+                <a class="button is-small is-facebook is-info"
+                    href="http://www.facebook.com/share.php?u={{ request.scheme }}://{{ request.get_host }}{{ request.path }}&t={{ item_obj.title }}"
+                    target="_blank">
                     <span class="icon">
                         <i class="fab fa-facebook fa-lg"></i>
                     </span>
                 </a>
-                
-                <a class="button is-small is-twitter is-link" href="http://www.twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.path }}&t={{ item_obj.title }}" target="_blank">
+
+                <a class="button is-small is-twitter is-link"
+                    href="http://www.twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{{ request.path }}&t={{ item_obj.title }}"
+                    target="_blank">
                     <span class="icon">
                         <i class="fab fa-twitter fa-lg"></i>
                     </span>
@@ -113,11 +123,12 @@
 
             <br /><br />
             <form action="" method="POST">
-                <p><label for="com">コメント</label></p>
                 {% csrf_token %}
-                <textarea name="text" id="com" cols="30" rows="10"></textarea>
-                <button type="submit">投稿</button>
+                <textarea class="textarea" placeholder="コメントする" name="text" id="com" cols="30" rows="5"></textarea>
+                <br />
+                <button class="button is-primary" type="submit">投稿</button>
             </form>
+            <hr>
 
             {% for comment in post.comments.all %}
             <p>{{ comment.text }}</br><small>{{ comment.posted_at }}</small></p>
