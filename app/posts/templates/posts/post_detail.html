@@ -52,7 +52,7 @@
                         {% if post.btc %}
                         <div class="throw-money">
                             <div
-                                onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
+                            onclick="copyToClipboard()">
                                 <a class="button is-medium" style="cursor:pointer;"><span class="icon is-small">
                                         <i class="fab fa-btc" aria-hidden="true"
                                             style="color:rgb(158, 158, 9); font-size: 35px; "></i>
@@ -63,6 +63,21 @@
                             </div>
                         </div>
                         {% endif %}
+                        <input id="copyTarget" type="text" value={{ post.btc }} readonly>
+      
+                        <script>
+                            function copyToClipboard() {
+                                // コピー対象をJavaScript上で変数として定義する
+                                var copyTarget = document.getElementById("copyTarget");
+
+                                // コピー対象のテキストを選択する
+                                copyTarget.select();
+
+                                // 選択しているテキストをクリップボードにコピーする
+                                document.execCommand("Copy");
+
+                            }
+                        </script>
                     </div>
                 </div>
             </div>

@@ -311,9 +311,7 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
 
 .throw-money {
     bottom: 30px;
-    float: right;
     width: 10%;
-    margin-right: 15%;
 }
 
 .signup-contents {
