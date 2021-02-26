@@ -43,6 +43,7 @@ body {
     color: black;
 }
 
+
 .search-result {
     margin-right: 24%;
     margin-left: 24%;
@@ -131,14 +132,19 @@ body {
     margin-right: 2%;
 }
 
+.tag-menu {
+    float: left;
+    width: 18%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
 .categolize-menu {
-    position: absolute;
     background-color: #f5f5f5;
     font-weight: bold;
-    width: 18%;
-    margin-left: 2.5%;
-    margin-top: 5%;
-    padding: 0px;
+    width: 100%;
+    margin-left: 2%;
+    margin-top: 18%;
 }
 
 .categolize-menu a:hover {
@@ -155,7 +161,6 @@ body {
 .categolize-icon {
     float: left;
     margin-left: 2.5%;
-    margin-top: 2.5%;
     font-weight: bold;
 }
 
@@ -211,8 +216,8 @@ div.signup > input, div.signup > textarea, div.signup > select, div.signup > but
     height: 450px;
     background-color: white;
     border-radius: 10px;
-    margin-left: 4%;
-    margin-right: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
     box-shadow: 0 0 6px -2px rgb(180, 180, 180);
     animation: fadeIn 2s ease 0.3s 1 normal;
 }
