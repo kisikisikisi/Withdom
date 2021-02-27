@@ -139,14 +139,15 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                    <strong>{{ post.title }}</strong><br>
-                                    <small>{{ post.published }}</small>
-                                    <small>{{ post.author }}</small>
+                                    <small>@{{ post.author }}が{{ post.published }}に投稿</small><br>
+                                    <strong>{{ post.title }}</strong><br />
+                                    <span class="icon has-text-info">
+                                        <i class="fas fa-tag" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+                                    </span>
                                     {% for tag in post.tags.all %}
                                     <button class="button is-success is-small is-rounded">{{ tag }}</button>
                                     {% endfor %}
                                     <br>
-                                    {{ post.summary|markdown|safe }}
                                 </div>
                                 <nav class="level is-mobile">
                                     <div class="level-left">
@@ -181,18 +182,19 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                    <strong>{{ p.title }}</strong><br>
-                                    <small>{{ p.published }}</small>
-                                    <small>{{ p.author }}</small>
-                                    {% for tag in p.tags.all %}
+                                    <small>@{{ post.author }}が{{ post.published }}に投稿</small><br>
+                                    <strong>{{ post.title }}</strong><br />
+                                    <span class="icon has-text-info">
+                                        <i class="fas fa-tag" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+                                    </span>
+                                    {% for tag in post.tags.all %}
                                     <button class="button is-success is-small is-rounded">{{ tag }}</button>
                                     {% endfor %}
                                     <br>
-                                    {{ p.summary|markdown|safe }}
                                 </div>
                                 <nav class="level is-mobile">
                                     <div class="level-left">
-                                        <p><span id="like" style="font-weight:normal;">{{ p.like }}</span>いいね！</p>
+                                        <p><span id="like" style="font-weight:normal;">{{ post.like }}</span>いいね！</p>
                                         <a class="level-item" aria-label="like">
                                             <span class="icon is-small has-text-info">
                                                 <i class="fas fa-star" aria-hidden="true"
@@ -224,18 +226,19 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                    <strong>{{ p.title }}</strong><br>
-                                    <small>{{ p.published }}</small>
-                                    <small>{{ p.author }}</small>
-                                    {% for tag in p.tags.all %}
+                                    <small>@{{ post.author }}が{{ post.published }}に投稿</small><br>
+                                    <strong>{{ post.title }}</strong><br />
+                                    <span class="icon has-text-info">
+                                        <i class="fas fa-tag" aria-hidden="true" style="color: rgb(50, 231, 177);"></i>
+                                    </span>
+                                    {% for tag in post.tags.all %}
                                     <button class="button is-success is-small is-rounded">{{ tag }}</button>
                                     {% endfor %}
                                     <br>
-                                    {{ p.summary|markdown|safe }}
                                 </div>
                                 <nav class="level is-mobile">
                                     <div class="level-left">
-                                        <p><span id="like" style="font-weight:normal;">{{ p.like }}</span>いいね！</p>
+                                        <p><span id="like" style="font-weight:normal;">{{ post.like }}</span>いいね！</p>
                                         <a class="level-item" aria-label="like">
                                             <span class="icon is-small has-text-info">
                                                 <i class="fas fa-star" aria-hidden="true"
