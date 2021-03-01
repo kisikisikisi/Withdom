@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer></script>
     <script src="{% static 'posts/js/tabs.js' %}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'posts/favicon.ico' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'posts/images/favicon.ico' %}">
     <link href="{% static 'posts/mdeditor/css/editormd.min.css' %}" rel="stylesheet">
     <link href="{% static 'posts/mdeditor/css/editormd.preview.css' %}" rel="stylesheet">
-    <title>CreHub</title>
 </head>
 
 <body>
@@ -41,7 +41,8 @@
                                     <input class="input" name="keyword" type="text" placeholder="キーワードを入力">
                                 </div>
                                 <div class="control">
-                                    <button class="button is-primary" type="submit"><i class="fa fa-search"></i></button>
+                                    <button class="button is-primary" type="submit"><i
+                                            class="fa fa-search"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -57,14 +58,8 @@
                         </a>
 
                         <div class="navbar-dropdown is-right">
-                            <a class="navbar-item">
-                                マイページ
-                            </a>
                             <a class="navbar-item" href="{% url 'posts:add' %}">
                                 記事を書く
-                            </a>
-                            <a class="navbar-item">
-                                アクセス解析
                             </a>
                             <hr class="navbar-divider">
                             <a class="navbar-item" href="{% url 'accounts:logout' %}">
