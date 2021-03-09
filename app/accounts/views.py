@@ -21,31 +21,6 @@ def guest_login(request):
     login(request, guest_user, backend='django.contrib.auth.backends.ModelBackend')
     return redirect('/')
 
-"""
-def detail(request, question_id):
-    context = {'question_id': question_id}
-    return render(request, 'polls/detail.html', context)
-def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-    except Question.DoesNotExist:
-        raise Http404("Question does not exist")
-    choice_list = question.choice_set.all()
-    context = {'question': question, 'choice_list':choice_list}
-    return render(request, 'polls/detail.html', context)
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    if request.method == 'POST':
-        form = VoteForm(request.POST, question=question)
-        if form.is_valid():
-            form.save()
-            return redirect('polls:results', question_id=question.id)
-    else:
-        form = VoteForm(question=question)
-    context = {'question':question, 'form':form}
-    return render(request, "polls/detail.html", context)
-"""
-
 @login_required
 def detail(request, question_id):
     user = request.user
