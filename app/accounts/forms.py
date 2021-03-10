@@ -4,15 +4,16 @@ from django.core.mail import send_mail
 
 class SignUpForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput)
+    id = forms.CharField(widget=forms.TextInput)
     email = forms.EmailField(widget=forms.TextInput)
     enter_password = forms.CharField(widget=forms.PasswordInput)
     retype_password = forms.CharField(widget=forms.PasswordInput)
 
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if User.objects.filter(username=username).exists():
+    def clean_id(self):
+        id = self.cleaned_data.get('id')
+        if User.objects.filter(id=id).exists():
             raise forms.ValidationError('このユーザーネームはすでに使われています')
-        return username
+        return id
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -42,9 +43,10 @@ class SignUpForm(forms.Form):
 
     def save(self):
         username = self.cleaned_data.get('username')
+        id = self.cleaned_data.get('id')
         password = self.cleaned_data.get('enter_password')
         email = self.cleaned_data.get('email')
-        new_user = User.objects.create_user(username = username, email = email)
+        new_user = User.objects.create_user(username = username, id = id, email = email)
         new_user.set_password(password)
         new_user.save()
         self.send_message(email, username)
