@@ -71,6 +71,7 @@
                     </div>
                     <div class="media-content">
                         <p class="title is-4">{{ user.username }}</p>
+                        <p class="subtitle is-7">@{{ user.id }}</p>
                     </div>
                 </div>
                 <div class="content">
@@ -167,7 +168,7 @@
 
                 {% endfor %}
             </div>
-            <div id="WebAud" class="content-tab" style="display:none">
+            <div id="WebAud" class="content-tab" style="display:none;">
                 {% for post in posts.all|slice:":1" %}
                 {% for p in post.sort_like|slice:":15" %}
                 <div class="box">
